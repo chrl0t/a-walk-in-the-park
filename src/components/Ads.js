@@ -1,7 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
-import db from '../firebase'
-import Loading from './Loading'
+import db from '../firebase';
+import Loading from './Loading';
+import AdCard from './AdCard';
+import {AdList, AdCardStyled} from '../styles';
 
 const Ads = () => {
     const [ads, setAds] = useState([])
@@ -27,17 +29,15 @@ const Ads = () => {
     } else {
         return (
             <div>
-                <ul>
+                <AdList>
                     {ads.map((ad) => {
                         return (
-                            <li>    
-                                <h2>{ad.title}</h2>
-                                <p>{ad.description}</p>
-                                <p>{ad.username}</p>
-                            </li>
+                            <AdCardStyled>
+                                <AdCard ad={ad} key={ad.username}/>
+                            </AdCardStyled>
                         )
                     })}
-                </ul>
+                </AdList>
                 
             </div>
         );

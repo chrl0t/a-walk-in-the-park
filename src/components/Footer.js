@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "@reach/router";
+import {FooterStyled} from '../styles';
 import home from "../images/home.png";
 import add from "../images/add.png";
 import user from "../images/user.png";
 
 const Footer = () => {
   return (
-    <footer className='footer'>
+    <FooterStyled className='footer'>
       <div className='buttons-container'>
         <Link to='/home'>
           <img className='home-button' src={home} alt='home-button' />
@@ -18,7 +19,7 @@ const Footer = () => {
           <img className='user-button' src={user} alt='user-button' />
         </Link>
       </div>
-    </footer>
+    </FooterStyled>
   );
 };
 

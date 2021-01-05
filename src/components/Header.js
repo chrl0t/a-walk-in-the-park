@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "@reach/router";
+import {HeaderStyled} from '../styles';
 
 const Header = () => {
   return (
-    <header className='header'>
-      <Link className='title' to='/home'>
+    <HeaderStyled className="header">
+      <Link to='/home'>
         A Walk in the Park
       </Link>
-    </header>
+    </HeaderStyled>
   );
 };
 
