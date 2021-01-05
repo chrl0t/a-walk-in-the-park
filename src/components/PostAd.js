@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import db from '../firebase'
 import firebase from 'firebase'
+import { navigate } from "@reach/router"
 
 const PostAd = () => {
     const [title, setTitle] = useState("")
@@ -13,9 +14,6 @@ const PostAd = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
       
-        db.settings({
-            timestampsInSnapshots: true
-        })
         const adRef = db.collection("ads").add({
             title: title,
             description: body,
@@ -23,8 +21,11 @@ const PostAd = () => {
             "created at": timestamp,
             postcode: postcode   
         })
+        
         setTitle("")
         setBody("")
+
+        navigate(`/home`)
     }
     console.log(Date().slice(4, 15))
 
@@ -32,9 +33,9 @@ const PostAd = () => {
         <div>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <p>Title</p>
-                <input type="text" required onChange={(e) => setTitle(e.target.value)}/>
+                <input type="text" value={title} required onChange={(e) => setTitle(e.target.value)}/>
                 <p>Body</p>
-                <textarea type="text" required onChange={(e) => setBody(e.target.value)}/>
+                <textarea type="text" value={body} required onChange={(e) => setBody(e.target.value)}/>
                 <input type="submit"/>
             </form>
             
