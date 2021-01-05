@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
-import {FooterStyled} from '../styles';
+import { FooterStyled } from "../styles";
 import home from "../images/home.png";
 import add from "../images/add.png";
 import user from "../images/user.png";
