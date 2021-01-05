@@ -1,15 +1,45 @@
 import React from 'react';
 import profilepic from '../images/profilepic.png'
+import {AdCardStyled} from '../styles';
+import {calculateDistance} from '../utils/calculateDistance';
 
 const AdCard = (props) => {
+
+    let lat = 0;
+    let long = 0;
+    
+    if ("geolocation" in navigator) {
+        console.log("Available");
+      } else {
+        console.log("Not Available");
+      }
+    navigator.geolocation.getCurrentPosition(function(position) {
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
+    });
+
+
+      
+
     const {ad} = props;
+
     return (
-        <li className="ad_card" >
-            <img src={profilepic} alt='user profile pic'/>    
-            <p>{ad.username}</p>
-            <h2>{ad.title}</h2>
-            <span>{ad.description}</span>
-        </li>
+        <AdCardStyled >
+            <div className="ad_user">
+                <img src={profilepic} alt='user profile pic'/>    
+                <p>{ad.username}</p>
+            </div>
+                <div className="ad_info">
+                    <h2>{ad.title}</h2>
+                    <span>{ad.description}</span>
+                    <br></br>
+                    <button>Message</button>
+                    <button>♡</button>
+                    <button>{calculateDistance(lat, long, ad.postcode.x_, ad.postcode.N_)}</button>
+                </div>
+                
+                
+        </AdCardStyled>
     );
 };
 

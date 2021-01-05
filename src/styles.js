@@ -151,3 +151,85 @@ export const LandingPageStyled = styled.div`
     text-align: center;
   }
 `;
+=======
+padding: 0px 0px;
+margin: auto;
+display: inline-block;
+`
+
+
+
+export const AdCardStyled = styled.li`
+border-top: solid 1px lightgrey;
+border-bottom: solid 1px lightgrey;
+list-style-type: none;
+padding: 10px 10px;
+margin: auto;
+display: flex;
+justify-content:center;
+align-items: center;
+text-align: left;
+
+//Advert pic and username
+.ad_user{
+    display:inline-block;
+    text-align:center;
+    margin: auto 0px;
+    width: 25%;   
+
+    img {
+        height: 60px;
+        width: auto;
+        margin:auto;
+        border: solid 1px lightgrey;
+    }
+    
+    p {
+        margin: auto;
+    }
+}
+
+//Advert title and description
+.ad_info {
+    width: 70%;
+    margin:auto;
+    padding:auto;
+    display: inline-block;
+}
+
+.ad_info h2, span {
+    margin:auto;
+    padding: auto;
+}
+
+.ad_info br {
+    margin: 10px;
+}
+.ad_info button {
+    padding:0.1rem;
+    margin: auto 1rem;
+}
+
+@media (min-width: 500px){
+    
+    width: 500px;
+    margin: 0px auto;
+    padding: auto;
+}
+`
+
+
+
+
+// PROFILE PAGE STYLING 
+
+export const ProfileContainer = styled.div`
+  text-align: center;
+  font-size: 25px;
+  
+`
+export const ProfilePicture = styled.img`
+  border-radius: 50%;
+  
+`
+
