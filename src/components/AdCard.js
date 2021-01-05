@@ -23,7 +23,7 @@ const AdCard = (props) => {
   return (
     <AdCardStyled>
       <div className='ad_user'>
-        <Link to={`/user/${ad.username}`}>
+        <Link className='username' to={`/user/${ad.username}`}>
           <img src={profilepic} alt='user profile pic' />
           <p>{ad.username}</p>{" "}
         </Link>
@@ -32,7 +32,6 @@ const AdCard = (props) => {
         <h2>{ad.title}</h2>
         <br></br>
         <span>{ad.description}</span>
-        <br></br>
         <br></br>
         <button>Message</button>
         <button>♡</button>

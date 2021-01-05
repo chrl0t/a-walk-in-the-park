@@ -11,6 +11,11 @@ export const HeaderStyled = styled.div`
   text-decoration: none;
   font-size: 2.8rem;
   color: #00887a;
+
+  .header-title {
+    text-decoration: none;
+    color: #00887a;
+  }
 `;
 
 export const FooterStyled = styled.div`
@@ -33,7 +38,7 @@ export const FooterStyled = styled.div`
     display: block;
     position: absolute;
     top: auto;
-    margin-top: 1.7rem;
+    margin-top: 1rem;
   }
 
   .home-button {
@@ -135,6 +140,11 @@ export const AdList = styled.ul`
   padding: 0px 0px;
   margin: auto;
   display: inline-block;
+
+  h1 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.7rem;
+  }
 `;
 
 export const AdCardStyled = styled.li`
@@ -148,6 +158,12 @@ export const AdCardStyled = styled.li`
   align-items: center;
   text-align: left;
 
+  .username {
+    text-decoration: none;
+    color: #00887a;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.8rem;
+  }
   //Advert pic and username
   .ad_user {
     display: inline-block;
@@ -173,6 +189,7 @@ export const AdCardStyled = styled.li`
     margin: auto;
     padding: auto;
     display: inline-block;
+    padding-left: 1.5rem;
   }
 
   .ad_info h2,
@@ -181,12 +198,24 @@ export const AdCardStyled = styled.li`
     padding: auto;
   }
 
+  .ad_info h2 {
+    font-family: "Catamaran", sans-serif;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .ad_info span {
+    font-family: Helvetica, sans-serif;
+    line-height: 1.2rem;
+    font-size: 1rem;
+  }
+
   .ad_info br {
     margin: 10px;
   }
   .ad_info button {
     padding: 0.1rem;
-    margin: auto 1rem;
+    margin: 0.5rem 1.7rem 0rem 0rem;
   }
 
   @media (min-width: 500px) {
