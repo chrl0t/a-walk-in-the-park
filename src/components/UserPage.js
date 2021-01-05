@@ -32,7 +32,7 @@ const UserPage = (props) => {
             <ProfilePicture src={profile.picture} width="100px"></ProfilePicture>
             <p>Username: {profile.username}</p>
             <p>Dob: {profile.dob}</p>
-            <p>Bio: need to fill this bit in the database</p>
+            <p>Bio: {profile.bio}</p>
         </ProfileContainer>
     );
 };

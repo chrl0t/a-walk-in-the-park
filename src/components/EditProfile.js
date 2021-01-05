@@ -9,7 +9,7 @@ const EditProfile = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        db.collection("users").doc("nTEGukKgBf6fLnU9hPgw").update({
+        db.collection("users").doc("grandpajoe").update({
             // username: username,
             bio: bio
         })
