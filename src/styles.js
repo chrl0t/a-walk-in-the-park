@@ -76,3 +76,18 @@ p {
     margin: auto 20px;
 }
 `
+
+
+
+
+// PROFILE PAGE STYLING 
+
+export const ProfileContainer = styled.div`
+  text-align: center;
+  font-size: 25px;
+  
+`
+export const ProfilePicture = styled.img`
+  border-radius: 50%;
+  
+`
