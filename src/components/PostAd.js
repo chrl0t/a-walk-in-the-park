@@ -1,31 +1,33 @@
-
 import React, { useState } from "react";
 import db from "../firebase";
 import firebase from "firebase";
 import { AdForm } from "../styles";
+import { navigate } from "@reach/router";
 
 const PostAd = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [hasChild, setHasChild] = useState(false);
+  const [hasDog, setHasDog] = useState(false);
   const user = "grandpajoe";
-  const postcode = new firebase.firestore.GeoPoint(53.7980924, -1.5337288);
+  const postcode = "LS18 4NA";
   const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    db.settings({
-      timestampsInSnapshots: true
-    });
     const adRef = db.collection("ads").add({
       title: title,
       description: body,
       username: user,
       "created at": timestamp,
-      postcode: postcode
+      postcode: postcode,
+      hasChild: hasChild,
+      hasDog: hasDog
     });
     setTitle("");
     setBody("");
+    navigate(`/home`);
   };
 
   return (
@@ -45,6 +47,18 @@ const PostAd = () => {
         />
         <br></br>
         <br></br>
+        <input
+          type='checkbox'
+          name='with-child'
+          onClick={(e) => setHasChild(!hasChild)}
+        />
+        <label for='with-child'>Do you have a child?</label>
+        <input
+          type='checkbox'
+          name='with-dog'
+          onClick={(e) => setHasDog(!hasDog)}
+        />
+        <label for='with-child'>Do you have a dog?</label>
         <input type='submit' className='submit-button' />
       </form>
     </AdForm>

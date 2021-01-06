@@ -7,10 +7,11 @@ import { AdList } from "../styles";
 const Ads = () => {
   const [ads, setAds] = useState([]);
   const [loading, setLoading] = useState(true);
+  // const [wantsChild, setWantsChild];
 
   useEffect(async () => {
-    const recipesRef = db.collection("ads");
-    const snapshot = await recipesRef.get();
+    const adsRef = db.collection("ads");
+    const snapshot = await adsRef.orderBy("created at", "desc").get();
     const fetchedAds = [];
     snapshot.forEach((doc) => {
       const ad = doc.data();
