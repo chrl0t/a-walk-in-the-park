@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {ProfileContainer, ProfilePicture} from '../styles'
-import db from '../firebase'
+import {db} from '../firebase'
 
 const EditProfile = (props) => {
     const [username, setUsername] = useState(props.username)

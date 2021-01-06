@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import db from '../firebase'
+import {db} from '../firebase'
 import profilepic from '../images/download.jpeg'
 import editLogo from '../images/edit.png'
 import Loading from './Loading'

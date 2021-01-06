@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import db from '../firebase'
+import {db} from '../firebase'
 import { ProfilePicture, ProfileContainer } from '../styles'
 
 import { formatDOB, calculateAge } from '../utils/calculateAge'

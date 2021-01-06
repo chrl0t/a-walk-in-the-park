@@ -7,6 +7,7 @@ import Ads from "./components/Ads";
 import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
+import Login from './components/Login'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <Router>
         <LandingPage path='/landing' />
+        <Login path="/login"/>
         <Ads path='/home' />
         <PostAd path='/new-ad' />
         <Profile path='/profile' />

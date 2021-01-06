@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import db from "../firebase";
+import {db} from "../firebase";
 import Loading from "./Loading";
 import AdCard from "./AdCard";
 import { AdList } from "../styles";
