@@ -66,7 +66,7 @@ async function getDistance(profilePostcode, adPostcode){
         <br></br>
         <button>Message</button>
         <button>♡</button>
-        <p>{distance}</p>
+        {(distance > 1 ? <button>{distance} miles from you</button>: <button>Less than a mile</button>)}
       </div>
     </AdCardStyled>
   );
