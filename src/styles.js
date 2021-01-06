@@ -10,11 +10,11 @@ export const HeaderStyled = styled.div`
   text-align: center;
   text-decoration: none;
   font-size: 2.8rem;
-  color: #00887a;
+  background-color: #00887a;
 
   .header-title {
     text-decoration: none;
-    color: #00887a;
+    color: black;
   }
 `;
 
@@ -87,11 +87,12 @@ export const AdForm = styled.div`
     color: #00887a;
     font-weight: bold;
     font-size: 1.5rem;
+    margin: 0.8rem;
   }
 
   input {
     width: 20rem;
-    height: 3rem;
+    height: 2.5rem;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
@@ -101,10 +102,27 @@ export const AdForm = styled.div`
 
   textarea {
     width: 20rem;
-    height: 10rem;
+    height: 8rem;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
+    border-color: #00887a;
+  }
+
+  .question {
+    color: #00887a;
+  }
+
+  .check-box {
+    width: 2rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .check-box:checked {
+    width: 5rem;
+    padding: 0;
+    margin: 0;
     border-color: #00887a;
   }
 `;
@@ -137,13 +155,44 @@ export const LandingPageStyled = styled.div`
 `;
 
 export const AdList = styled.ul`
-  padding: 0px 0px;
+  padding: 0px 0px 2rem 0px;
   margin: auto;
   display: inline-block;
 
   h1 {
     font-family: "Open Sans", sans-serif;
     font-size: 1.7rem;
+  }
+
+  form {
+    padding-bottom: 1rem;
+  }
+
+  .submit-button {
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #00887a;
+    font-family: "Catamaran", sans-serif;
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
+    width: 8rem;
+    height: 1.8rem;
+    margin: 0.5em;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .select-box {
+    background-color: white;
+    font-family: "Catamaran", sans-serif;
+    border-color: #00887a;
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+
+  .question {
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -164,7 +213,7 @@ export const AdCardStyled = styled.li`
     font-family: "Open Sans", sans-serif;
     font-size: 0.8rem;
   }
-  
+
   //Advert pic and username
   .ad_user {
     display: inline-block;
@@ -184,6 +233,25 @@ export const AdCardStyled = styled.li`
     }
   }
 
+  button {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+
+  .emoji {
+    font-size: 1.5rem;
+  }
+
+  .distance {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #00887a;
+  }
+
   //Advert title and description
   .ad_info {
     width: 70%;
@@ -191,6 +259,7 @@ export const AdCardStyled = styled.li`
     padding: auto;
     display: inline-block;
     padding-left: 1.5rem;
+    font-size: 0.8rem;
   }
 
   .ad_info h2,

@@ -115,20 +115,30 @@ const Ads = () => {
       <AdList>
         <h1>Find a walking buddy:</h1>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <p>Do you want to walk with someone with children?</p>
-          <select onChange={(e) => setWantsChild(e.target.value)}>
+          <p className='question'>
+            Do you want to walk with someone with children?
+          </p>
+          <select
+            className='select-box'
+            onChange={(e) => setWantsChild(e.target.value)}
+          >
             <option>Yes</option>
             <option>No</option>
             <option>Don't mind</option>
           </select>
-          <p>Do you want to walk with someone with a dog?</p>
-          <select onChange={(e) => setWantsDog(e.target.value)}>
+          <p className='question'>
+            Do you want to walk with someone with a dog?
+          </p>
+          <select
+            className='select-box'
+            onChange={(e) => setWantsDog(e.target.value)}
+          >
             <option>Yes</option>
             <option>No</option>
             <option>Don't mind</option>
           </select>
           <br></br>
-          <input type='submit' />
+          <input type='submit' className='submit-button' />
         </form>
         {ads.map((ad) => {
           return <AdCard ad={ad} profile={profile} />;
