@@ -13,21 +13,24 @@ const Profile = () => {
     const [edit, setEdit] = useState(false)
 
 
-    useEffect(async () => {
-        const userRef = db.collection('users')
-        const snapshot = await userRef.where('username', '==', user).get()
-        if (snapshot.empty) {
-            console.log("No matching documents")
-            return;
+    useEffect( () => {
+        async function fetchData(){
+            const userRef = db.collection('users')
+            const snapshot = await userRef.where('username', '==', user).get()
+            if (snapshot.empty) {
+                console.log("No matching documents")
+                return;
+            }
+            let userInfo = {}
+    
+            snapshot.forEach(doc => {
+                userInfo = doc.data()
+            })
+            
+            setProfile(userInfo)
+            setLoading(false)
         }
-        let userInfo = {}
-
-        snapshot.forEach(doc => {
-            userInfo = doc.data()
-        })
-        
-        setProfile(userInfo)
-        setLoading(false)
+        fetchData()
     }, [])
 
     const handleEdit = (e) => {

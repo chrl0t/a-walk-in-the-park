@@ -164,6 +164,7 @@ export const AdCardStyled = styled.li`
     font-family: "Open Sans", sans-serif;
     font-size: 0.8rem;
   }
+  
   //Advert pic and username
   .ad_user {
     display: inline-block;
