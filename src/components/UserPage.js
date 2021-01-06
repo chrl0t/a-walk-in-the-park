@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import db from '../firebase'
 import { ProfilePicture, ProfileContainer } from '../styles'
+
 import { formatDOB, calculateAge } from '../utils/calculateAge'
+  import Loading from './Loading';
+
 
 const UserPage = (props) => {
     const user = props.username
@@ -10,29 +13,36 @@ const UserPage = (props) => {
     const [age, setAge] = useState(0)
 
 
-    useEffect(async () => {
-        const userRef = db.collection('users')
-        const snapshot = await userRef.where('username', '==', user).get()
-        if (snapshot.empty) {
-            console.log("No matching documents")
-            return;
-        }
-        let userInfo = {}
-
-        snapshot.forEach(doc => {
-            userInfo = doc.data()
-        })
+    useEffect( () => {
+        async function fetchData(){
+            const userRef = db.collection('users')
+            const snapshot = await userRef.where('username', '==', user).get()
+            if (snapshot.empty) {
+                console.log("No matching documents")
+                return;
+            }
+            let userInfo = {}
+    
+            snapshot.forEach(doc => {
+                userInfo = doc.data()
+            })
+            
+            setProfile(userInfo)           
         
-        setProfile(userInfo)
         const dob = formatDOB(userInfo.dob)
         
         const age = calculateAge(dob)
 
         setAge(age)
         setLoading(false)
-    }, [])
+    } fetchData();
+    }, [user])
 
-
+if (loading) {
+        return (
+            <Loading/>
+        )
+    }   else {
     return (
         <ProfileContainer>
             <h2>{profile.name}</h2>
@@ -42,7 +52,7 @@ const UserPage = (props) => {
             <p>Age: {age}</p>
             <p>Bio: {profile.bio}</p>
         </ProfileContainer>
-    );
+    )}
 };
 
 export default UserPage;   

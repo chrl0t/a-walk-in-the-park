@@ -5,7 +5,9 @@ import AdCard from "./AdCard";
 import { AdList } from "../styles";
 
 const Ads = () => {
+  const user = 'grandpajoe';
   const [ads, setAds] = useState([]);
+  const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
   const [wantsChild, setWantsChild] = useState("")
   const [wantsDog, setWantsDog] = useState("")
@@ -20,9 +22,23 @@ const Ads = () => {
         fetchedAds.push(ad);
       });
       setAds(fetchedAds);
-      setLoading(false);
+
+    };
+    async function fetchUser(){
+      const userRef = db.collection('users')
+      const snapshot = await userRef.where('username', '==', user).get()
+      if (snapshot.empty) {
+        console.log("No matching documents")
+        return;
+      }
+      let userInfo = {}
+      snapshot.forEach(doc => {
+        userInfo = doc.data()
+      })
+      setProfile(userInfo)
+      setLoading(false)
     }
-    fetchData()
+    Promise.all([fetchData(), fetchUser()]);
   }, []);
 
   const handleSubmit = (e) => {
@@ -115,7 +131,7 @@ const Ads = () => {
           <input type="submit"/>
         </form>
         {ads.map((ad) => {
-          return <AdCard ad={ad} />;
+          return <AdCard ad={ad} profile={profile}/>;
         })}
       </AdList>
     );
