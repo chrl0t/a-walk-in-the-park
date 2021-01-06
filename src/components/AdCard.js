@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { AdCardStyled } from "../styles";
-import db from '../firebase';
+import {db} from '../firebase';
 import { Link } from "@reach/router";
 
 import { calculateDistance } from "../utils/calculateDistance";

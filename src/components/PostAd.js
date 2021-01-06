@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import db from "../firebase";
+import {db} from "../firebase";
 import firebase from "firebase";
 import { AdForm } from "../styles";
 import { navigate } from "@reach/router";
