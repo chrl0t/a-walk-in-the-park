@@ -27,9 +27,33 @@ const Ads = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (wantsChild === "Yes" && wantsDog === "Yes") {
+
+    let dog = true;
+    let child = true;
+
+    if (wantsChild !== "Don't mind" && wantsDog !== "Don't mind") {
+      if (wantsChild === "Yes" && wantsDog === "No") dog = false;
+      if (wantsChild === "No" && wantsDog === "Yes") child = false;
+      if (wantsChild === "No" && wantsDog === "No") {
+        dog = false;
+        child = false;
+      } 
+
       async function fetchData() {
-          const adsRef = db.collection("ads").where("hasChild", "==", true).where("hasDog", "==", true)
+        const adsRef = db.collection("ads").where("hasChild", "==", child).where("hasDog", "==", dog)
+        const snapshot = await adsRef.orderBy("created at", "desc").get();
+        const fetchedAds = [];
+        snapshot.forEach((doc) => {
+          const ad = doc.data();
+            fetchedAds.push(ad);
+          });
+          setAds(fetchedAds);
+          setLoading(false);
+        }
+      fetchData()
+    } else if (wantsChild === "Don't mind" && wantsDog === "Don't mind") {
+        async function fetchData() {
+          const adsRef = db.collection("ads")
           const snapshot = await adsRef.orderBy("created at", "desc").get();
           const fetchedAds = [];
           snapshot.forEach((doc) => {
@@ -38,114 +62,34 @@ const Ads = () => {
           });
           setAds(fetchedAds);
           setLoading(false);
+        }
+        fetchData()
+      } else {
+        let property = "hasChild";
+        let dogOrChild = true
+        if (wantsChild === "No") dogOrChild= false;
+        if (wantsDog === "Yes") {
+          property = "hasDog"
+        }
+        if (wantsDog === "No") {
+          dogOrChild = false;
+          property = "hasDog"
+        }
+        async function fetchData() {
+          const adsRef = db.collection("ads").where(property, "==", dogOrChild)
+          const snapshot = await adsRef.orderBy("created at", "desc").get();
+          const fetchedAds = [];
+          snapshot.forEach((doc) => {
+            const ad = doc.data();
+              fetchedAds.push(ad);
+            });
+            setAds(fetchedAds);
+            setLoading(false);
+          }
+        fetchData()
       }
-      fetchData()
-    } else if (wantsChild === "Yes" && wantsDog === "No") {
-      async function fetchData() {
-        const adsRef = db.collection("ads").where("hasChild", "==", true).where("hasDog", "==", false)
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    } else if (wantsChild === "Yes" && wantsDog === "Don't mind") {
-      async function fetchData() {
-        const adsRef = db.collection("ads").where("hasChild", "==", true)
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    } else if (wantsChild === "No" && wantsDog === "Don't mind") {
-      async function fetchData() {
-        const adsRef = db.collection("ads").where("hasChild", "==", false)
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    } else if (wantsChild === "No" && wantsDog === "Yes") {
-      async function fetchData() {
-        const adsRef = db.collection("ads").where("hasChild", "==", false).where("hasDog", "==", true)
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    } else if (wantsChild === "Don't mind" && wantsDog === "Yes") {
-      async function fetchData() {
-        const adsRef = db.collection("ads").where("hasDog", "==", true)
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    } else if (wantsChild === "Don't mind" && wantsDog === "No") {
-      async function fetchData() {
-        const adsRef = db.collection("ads").where("hasDog", "==", false)
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    } else if (wantsChild === "No" && wantsDog === "No") {
-      async function fetchData() {
-        const adsRef = db.collection("ads").where("hasChild", "==", false).where("hasDog", "==", false)
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    } else {
-      async function fetchData() {
-        const adsRef = db.collection("ads")
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
-        const fetchedAds = [];
-        snapshot.forEach((doc) => {
-          const ad = doc.data();
-          fetchedAds.push(ad);
-        });
-        setAds(fetchedAds);
-        setLoading(false);
-      }
-      fetchData()
-    }
   }
+  
 
   if (loading) {
     return <Loading />;
