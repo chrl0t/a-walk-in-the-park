@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import db from '../firebase'
 import { ProfilePicture, ProfileContainer } from '../styles'
+import { formatDOB, calculateAge } from '../utils/calculateAge'
 
 const UserPage = (props) => {
     const user = props.username
     const [profile, setProfile] = useState({})
     const [loading, setLoading] = useState(false)
+    const [age, setAge] = useState(0)
 
 
     useEffect(async () => {
@@ -22,6 +24,11 @@ const UserPage = (props) => {
         })
         
         setProfile(userInfo)
+        const dob = formatDOB(userInfo.dob)
+        
+        const age = calculateAge(dob)
+
+        setAge(age)
         setLoading(false)
     }, [])
 
@@ -32,7 +39,8 @@ const UserPage = (props) => {
             <ProfilePicture src={profile.picture} width="100px"></ProfilePicture>
             <p>Username: {profile.username}</p>
             <p>Dob: {profile.dob}</p>
-            <p>Bio: need to fill this bit in the database</p>
+            <p>Age: {age}</p>
+            <p>Bio: {profile.bio}</p>
         </ProfileContainer>
     );
 };

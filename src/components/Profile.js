@@ -5,13 +5,15 @@ import editLogo from '../images/edit.png'
 import Loading from './Loading'
 import EditProfile from './EditProfile'
 import { ProfilePicture, ProfileContainer } from '../styles'
+import { formatDOB, calculateAge } from '../utils/calculateAge'
+
 
 const Profile = () => {
     const user = 'grandpajoe'
     const [profile, setProfile] = useState({})
     const [loading, setLoading] = useState(false)
     const [edit, setEdit] = useState(false)
-
+    const [age, setAge] = useState(0)
 
     useEffect(async () => {
         const userRef = db.collection('users')
@@ -27,6 +29,11 @@ const Profile = () => {
         })
         
         setProfile(userInfo)
+        const dob = formatDOB(userInfo.dob)
+        
+        const age = calculateAge(dob)
+
+        setAge(age)
         setLoading(false)
     }, [])
 
@@ -54,6 +61,7 @@ const Profile = () => {
                 <img src={editLogo} alt="edit" width="20px" height="20px" onClick={(e) => handleEdit(e)} id="show"></img>
                 <p>Username: {profile.username}</p>
                 <p>Dob: {profile.dob}</p>
+                <p>Age: {age}</p>
                 <p>Bio: {profile.bio}</p>
             </ProfileContainer>
         );
