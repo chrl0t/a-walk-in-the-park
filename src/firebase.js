@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import firebaseui from 'firebaseui';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDXdozot24PgJ05qth7stWp6NdcrJqHo4Y",
@@ -15,5 +16,6 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
 const db = firebase.firestore()
+const ui = new firebaseui.auth.AuthUI(firebase.auth())
 
 export default db
