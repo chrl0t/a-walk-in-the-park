@@ -46,19 +46,28 @@ const PostAd = () => {
           onChange={(e) => setBody(e.target.value)}
         />
         <br></br>
+        <label className='question' for='with-child'>
+          Do you have a child?
+        </label>
         <br></br>
         <input
           type='checkbox'
           name='with-child'
+          className='check-box'
           onClick={(e) => setHasChild(!hasChild)}
         />
-        <label for='with-child'>Do you have a child?</label>
+        <br></br>
+        <label className='question' for='with-child'>
+          Do you have a dog?
+        </label>
+        <br></br>
         <input
           type='checkbox'
           name='with-dog'
+          className='check-box'
           onClick={(e) => setHasDog(!hasDog)}
         />
-        <label for='with-child'>Do you have a dog?</label>
+        <br></br>
         <input type='submit' className='submit-button' />
       </form>
     </AdForm>
