@@ -9,6 +9,7 @@ const Ads = () => {
   const [ads, setAds] = useState([]);
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
+  // const [wantsChild, setWantsChild];
 
   useEffect( () => {
     async function fetchData(){
@@ -36,6 +37,7 @@ const Ads = () => {
       setLoading(false)
     }
     Promise.all([fetchData(), fetchUser()]);
+
   }, []);
 
   if (loading) {
