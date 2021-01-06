@@ -1,25 +1,57 @@
-import React from "react";
-import profilepic from "../images/profilepic.png";
+import React, {useEffect, useState} from "react";
 import { AdCardStyled } from "../styles";
-import { calculateDistance } from "../utils/calculateDistance";
+import db from '../firebase';
 import { Link } from "@reach/router";
 
+import { calculateDistance } from "../utils/calculateDistance";
+import Loading from './Loading';
+import profilepic from "../images/profilepic.png";
+const postcodes = require('node-postcodes.io');
+
+
 const AdCard = (props) => {
-  let lat = 0;
-  let long = 0;
+  const [loading, setLoading] = useState(true);
+  const [distance, setDistance] = useState(0);
+  const { ad, profile } = props;
 
-  if ("geolocation" in navigator) {
-    console.log("Available");
-  } else {
-    console.log("Not Available");
+  useEffect(() => {
+    getDistance(profile.postcode, ad.postcode)
+    .then((distance)=> {
+      setDistance(distance);
+      setLoading(false);
+    })
+    
+}, [])
+
+
+async function getGeolocation(postcode){
+  const result = await postcodes.lookup(postcode).then((res)=>{
+    return res.result;
+  })
+  return result;
+}
+
+// .replace(/\s/g,'')
+
+async function getDistance(profilePostcode, adPostcode){
+  if(adPostcode && profilePostcode){
+    let pp = await getGeolocation(profilePostcode);
+    let ap = await getGeolocation(adPostcode);
+    console.log(pp);
+    console.log(ap);
+
+    return calculateDistance(pp.latitude, pp.longitude, ap.latitude, ap.longitude);
   }
-  navigator.geolocation.getCurrentPosition(function (position) {
-    lat = position.coords.latitude;
-    long = position.coords.longitude;
-  });
+}
 
-  const { ad } = props;
-
+  
+  if (loading) {
+    return (
+        <Loading/>
+    )
+}  else {
+  // console.log(profile.postcode, 'profile-------------')
+  // console.log(ad.postcode, 'ad-------------------')
   return (
     <AdCardStyled>
       <div className='ad_user'>
@@ -30,15 +62,15 @@ const AdCard = (props) => {
       </div>
       <div className='ad_info'>
         <h2>{ad.title}</h2>
-        <br></br>
         <span>{ad.description}</span>
         <br></br>
         <button>Message</button>
         <button>♡</button>
-        {/* <button>{calculateDistance(lat, long, ad.postcode.x_, ad.postcode.N_)}</button> */}
+        <p>{distance}</p>
       </div>
     </AdCardStyled>
   );
+}
 };
 
 export default AdCard;
