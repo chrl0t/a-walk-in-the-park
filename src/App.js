@@ -7,11 +7,14 @@ import Ads from "./components/Ads";
 import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
+import Login from "./components/Login";
+import EditProfile from "./components/EditProfile";
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import PasswordReset from './components/PasswordReset';
 import UserProvider, { UserContext } from './providers/UserProvider';
 import { useContext } from "react";
+
 
 function App() {
   const user = useContext(UserContext);
@@ -22,11 +25,16 @@ function App() {
     <div className='container'>
       <Header />
       <Router>
+
+        <Login path='/login' />
+
         <LandingPage path='/' />
+
         <Ads path='/home' />
         <PostAd path='/new-ad' />
         <Profile path='/profile' />
         <UserPage path='/user/:username' />
+        <EditProfile path='/profile/editprofile' />
       </Router>
       <Footer /> 
     </div> 
