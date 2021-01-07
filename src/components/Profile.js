@@ -6,10 +6,18 @@ import Loading from './Loading'
 import EditProfile from './EditProfile'
 import { ProfilePicture, ProfileContainer } from '../styles'
 import { formatDOB, calculateAge } from '../utils/calculateAge'
+import { useContext } from 'react'
+import {AuthContext} from '../Authentication'
+
 
 
 const Profile = () => {
-    const user = 'grandpajoe'
+    const { currentUser } = useContext(AuthContext)
+    let user;
+    if (currentUser) {
+        user = currentUser.email
+    }
+    
     const [profile, setProfile] = useState({})
     const [loading, setLoading] = useState(false)
     const [edit, setEdit] = useState(false)
@@ -18,7 +26,7 @@ const Profile = () => {
     useEffect( () => {
         async function fetchData(){
             const userRef = db.collection('users')
-            const snapshot = await userRef.where('username', '==', user).get()
+            const snapshot = await userRef.where('email', '==', user).get()
             if (snapshot.empty) {
                 console.log("No matching documents")
                 return;

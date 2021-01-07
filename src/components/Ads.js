@@ -3,6 +3,8 @@ import {db} from "../firebase";
 import Loading from "./Loading";
 import AdCard from "./AdCard";
 import { AdList } from "../styles";
+import { useContext } from 'react'
+import {AuthContext} from '../Authentication'
 
 const Ads = () => {
   const user = "grandpajoe";
@@ -108,10 +110,18 @@ const Ads = () => {
     }
   };
 
+
+
+  const { currentUser } = useContext(AuthContext)
+
+
   if (loading) {
     return <Loading />;
   } else {
     return (
+      <>
+      {currentUser ? <p>Signed in with {currentUser.email}</p> : null}
+      
       <AdList>
         <h1>Find a walking buddy:</h1>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -144,6 +154,7 @@ const Ads = () => {
           return <AdCard ad={ad} profile={profile} />;
         })}
       </AdList>
+      </>
     );
   }
 };

@@ -7,41 +7,30 @@ import Ads from "./components/Ads";
 import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
-import PasswordReset from './components/PasswordReset';
-import UserProvider, { UserContext } from './providers/UserProvider';
-import { useContext } from "react";
+import Login from "./components/Login"
+import Signup from './components/Signup'
+import { AuthProvider } from "./Authentication";
+import { useContext } from 'react'
+import {AuthContext} from './Authentication'
+import InputUserDetails from './components/InputUserDetails'
+
 
 function App() {
-  const user = useContext(UserContext);
-  console.log(user)
   return (
-    <UserProvider>
-      {user ? 
-    <div className='container'>
+   <AuthProvider>
       <Header />
-      <Router>
-        <LandingPage path='/' />
-        <Ads path='/home' />
-        <PostAd path='/new-ad' />
-        <Profile path='/profile' />
-        <UserPage path='/user/:username' />
-      </Router>
+        <Router>
+          <LandingPage path='/' />
+          <Login path='/login'/>
+          <Signup path='/signUp'/>
+          <InputUserDetails path='/signUpDetails'/>
+          <Ads path='/home' />
+          <PostAd path='/new-ad' />
+          <Profile path='/profile' />
+          <UserPage path='/user/:username' />
+        </Router>
       <Footer /> 
-    </div> 
-    :
-    <div>
-      <Header />
-      <Router>
-        <LandingPage path='/' />
-        <SignIn path="/login"/>
-        <SignUp path='/signUp' />
-        <PasswordReset path='/passwordReset'/>
-      </Router>
-    </div>}
-    </UserProvider>
-  
-  )}
+  </AuthProvider>
+)}
 
 export default App;
