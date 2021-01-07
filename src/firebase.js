@@ -1,9 +1,12 @@
-import firebase from 'firebase'
-const firebaseui = require('firebaseui');
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import { functions } from "firebase";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDXdozot24PgJ05qth7stWp6NdcrJqHo4Y",
     authDomain: "a-walk-in-the-park-89cc0.firebaseapp.com",
+    databaseURL: "https://a-walk-in-the-park-89cc0.com",
     projectId: "a-walk-in-the-park-89cc0",
     storageBucket: "a-walk-in-the-park-89cc0.appspot.com",
     messagingSenderId: "185033358747",
@@ -11,25 +14,50 @@ const firebaseConfig = {
     measurementId: "G-8BKQV908L3",
 };
 
-
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
 export const auth = firebase.auth();
-firebase.analytics();
+export const db = firebase.firestore();
+export const firestore = firebase.firestore();
 
-export const db = firebase.firestore()
+const provider = new firebase.auth.GoogleAuthProvider();
+export const signInWithGoogle = () => {
+  auth.signInWithPopup(provider);
+};
 
+export const generateUserDocument = async (user, additionalData) => {
+  if (!user) return;
 
+  const userRef = firestore.doc(`users/${user.uid}`);
+  const snapshot = await userRef.get();
 
+  if (!snapshot.exists) {
+    const { email, displayName, photoURL } = user;
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        photoURL,
+        ...additionalData
+      });
+    } catch (error) {
+      console.error("Error creating user document", error);
+    }
+  }
+  return getUserDocument(user.uid);
+};
 
-// const uiConfig = ({
-//   signInSuccessUrl: "/",
-//   signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
-//   tosUrl: '/terms-of-service' 
-// })
+const getUserDocument = async uid => {
+  if (!uid) return null;
+  try {
+    const userDocument = await firestore.doc(`users/${uid}`).get();
 
-
-// const ui = new firebaseui.auth.AuthUI(firebase.auth())
-
-// export const startFirebaseUI = function (elementId) {
-//   ui.start(elementId, uiConfig)
-// }
+    return {
+      uid,
+      ...userDocument.data()
+    };
+  } catch (error) {
+    console.error("Error fetching user", error);
+  }
+};
