@@ -7,7 +7,8 @@ import Ads from "./components/Ads";
 import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
-import Login from './components/Login'
+import Login from "./components/Login";
+import EditProfile from "./components/EditProfile";
 
 function App() {
   return (
@@ -15,11 +16,12 @@ function App() {
       <Header />
       <Router>
         <LandingPage path='/landing' />
-        <Login path="/login"/>
+        <Login path='/login' />
         <Ads path='/home' />
         <PostAd path='/new-ad' />
         <Profile path='/profile' />
         <UserPage path='/user/:username' />
+        <EditProfile path='/profile/editprofile' />
       </Router>
       <Footer />
     </div>
