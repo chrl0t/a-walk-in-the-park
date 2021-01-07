@@ -12,11 +12,11 @@ const LandingPage = () => {
         hoodie tumblr pinterest fashion axe. 3 wolf moon pour-over meh pitchfork
         try-hard ennui.
       </p>
-      <Link to='/home'>
+      <Link to='/login'>
         {" "}
         <button className='login-button'>Login</button>
       </Link>
-      <Link to='/home'>
+      <Link to='/signUp'>
         {" "}
         <button className='register-button'>I'm new here</button>
       </Link>
