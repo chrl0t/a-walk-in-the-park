@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <FooterStyled className='footer'>
       <div className='buttons-container'>
-        <Link to='/'>
+        <Link to='/home'>
           <img className='home-button' src={home} alt='home-button' />
         </Link>
         <Link to='/messages'>
