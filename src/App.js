@@ -10,12 +10,10 @@ import UserPage from "./components/UserPage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { AuthProvider } from "./Authentication";
-import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "./Authentication";
-import {auth} from './firebase'
 import InputUserDetails from "./components/InputUserDetails";
 import Messages from "./components/Messages";
 import Inbox from "./components/Inbox";
+import React, { useEffect, useState } from "react";
 
 
 function App() {

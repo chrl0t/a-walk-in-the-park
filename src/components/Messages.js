@@ -1,17 +1,23 @@
 import React, { Component, Fragment } from "react";
 import Talk from "talkjs";
+import firebase from "firebase/app";
+import { AuthContext } from "../Authentication";
 
 class Messages extends Component {
+  static contextType = AuthContext;
   state = {
     id: "grandpajoe",
     name: "Joe Bucket",
     role: "Member",
     photoUrl:
-      "https://static.wikia.nocookie.net/roalddahl/images/b/b9/Illmannered.jpg/revision/latest/top-crop/width/360/height/450?cb=20140911174536",
-    welcomeMessage: "Hiya!!!"
+      "https://static.wikia.nocookie.net/roalddahl/images/b/b9/Illmannered.jpg/revision/latest/top-crop/width/360/height/450?cb=20140911174536"
   };
 
   componentDidMount() {
+    let user = firebase.auth().currentUser;
+    console.log(user);
+    this.setState({ id: "charlotte" });
+    console.log(this.state);
     Talk.ready
       .then(() => {
         const me = new Talk.User(this.state);
@@ -30,6 +36,7 @@ class Messages extends Component {
   }
 
   render() {
+    console.log(this.context);
     return (
       <Fragment>
         <div
