@@ -43,41 +43,60 @@ const Profile = () => {
         
         const age = calculateAge(dob)
 
-        setAge(age)
-        setLoading(false)
-        }
-fetchData()
-    }, [])
+      const dob = formatDOB(userInfo.dob);
 
-    const handleEdit = (e) => {
-        if (e.target.id === "show") setEdit(true)
-        if (e.target.id === "hide") {
-            setEdit(false)
-            window.location.reload()
-        }  
-    }
+      const age = calculateAge(dob);
 
-    if (loading) {
-        return (
-            <Loading/>
-        )
-    }   else if (edit) {
-        return (
-            <EditProfile handleEdit={handleEdit} userInfo={profile} profilePicture={profilepic}/>
-        )
-    } else {
-        return (
-            <ProfileContainer>
-                <h2>{profile.name}</h2>
-                <ProfilePicture src={profilepic} width="100px" height="100px"></ProfilePicture>
-                <img src={editLogo} alt="edit" width="20px" height="20px" onClick={(e) => handleEdit(e)} id="show"></img>
-                <p>Username: {profile.username}</p>
-                <p>Dob: {profile.dob}</p>
-                <p>Age: {age}</p>
-                <p>Bio: {profile.bio}</p>
-            </ProfileContainer>
-        );
+      setAge(age);
+      setLoading(false);
     }
+    fetchData();
+  }, []);
+
+  const handleEdit = (e) => {
+    if (e.target.id === "show") setEdit(true);
+    if (e.target.id === "hide") {
+      setEdit(false);
+      window.location.reload();
+    }
+  };
+
+  if (loading) {
+    return <Loading />;
+  } else if (edit) {
+    return (
+      <EditProfile
+        handleEdit={handleEdit}
+        userInfo={profile}
+        profilePicture={profilepic}
+      />
+    );
+  } else {
+    return (
+      <ProfileContainer>
+        <h2>{profile.username}</h2>
+        <ProfilePicture
+          src={profilepic}
+          width='100px'
+          height='100px'
+        ></ProfilePicture>
+        <img
+          src={editLogo}
+          alt='edit'
+          width='20px'
+          height='20px'
+          onClick={(e) => handleEdit(e)}
+          id='show'
+        ></img>
+        <div className='info'>
+          <div className='fields'>Name: {profile.name}</div>
+          <div className='fields'>Age: {age}</div>
+          <div className='fields-gender'>Gender: {profile.gender}</div>
+          <div className='fields'>{profile.bio}</div>
+        </div>
+      </ProfileContainer>
+    );
+  }
 };
 
 export default Profile;

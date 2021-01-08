@@ -3,6 +3,8 @@ import { Link, navigate } from "@reach/router";
 import { HeaderStyled } from "../styles";
 import app from '../firebase'
 
+
+
 const Header = () => {
   const [err, setErr] = useState()
 

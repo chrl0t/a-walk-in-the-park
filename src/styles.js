@@ -34,7 +34,8 @@ export const FooterStyled = styled.div`
 
   .home-button,
   .add-button,
-  .user-button {
+  .user-button,
+  .message-button {
     display: block;
     position: absolute;
     top: auto;
@@ -58,6 +59,14 @@ export const FooterStyled = styled.div`
     width: 3rem;
     right: 0%;
     padding-right: 0.8rem;
+  }
+
+  .message-button {
+    height: 3.5rem;
+    width: 3rem;
+    margin-top: 0.5rem;
+    position: flex;
+    margin-left: 6rem;
   }
 `;
 
@@ -300,6 +309,60 @@ export const AdCardStyled = styled.li`
 export const ProfileContainer = styled.div`
   text-align: center;
   font-size: 25px;
+  padding: 0.5rem;
+  padding-top: 0rem;
+
+  img {
+    padding-top: 0rem;
+    margin-top: 0rem;
+  }
+
+  h2 {
+    color: #00887a;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    color: #00887a;
+    margin-bottom: 0.8rem;
+  }
+
+  .info {
+    font-size: 1.2rem;
+    font-family: Helvetica, sans-serif;
+  }
+
+  .fields-gender {
+    margin: 1rem;
+    text-transform: capitalize;
+  }
+
+  .fields {
+    margin: 1rem;
+  }
+
+  .submit-button {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #00887a;
+    font-family: "Catamaran", sans-serif;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    width: 10rem;
+    height: 2rem;
+    margin: 0.5em;
+    text-align: center;
+  }
+
+  textarea {
+    width: 20rem;
+    height: 8rem;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
+    border-color: #00887a;
+  }
 `;
 export const ProfilePicture = styled.img`
   border-radius: 50%;

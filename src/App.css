@@ -10,3 +10,57 @@ body {
   background-color: white;
   font-family: "Catamaran", sans-serif;
 }
+
+.user-picture img {
+  height: 5rem;
+  width: 5rem;
+}
+
+.user {
+  list-style: none;
+}
+
+.current-user-container {
+  width: 28%;
+}
+.current-user-container > div {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+.current-user-info {
+  text-align: center;
+}
+.current-user-info h3 {
+  margin-bottom: 10px;
+}
+.current-user-info p {
+  margin-bottom: 0;
+}
+.current-user-picture img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.chatbox-container {
+  bottom: 0;
+  height: 20rem;
+  right: 5%;
+  width: 300px;
+}
+
+.inbox-container {
+  margin-top: 4rem;
+}
+
+.users-container {
+  padding-top: 5rem;
+}
+
+.user-action {
+  margin-bottom: 2rem;
+}
