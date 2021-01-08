@@ -7,40 +7,25 @@ import Ads from "./components/Ads";
 import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
-import PasswordReset from './components/PasswordReset';
-import UserProvider, { UserContext } from './providers/UserProvider';
-import { useContext } from "react";
+import Inbox from "./components/Inbox";
+import Messages from "./components/Messages";
 
 function App() {
-  const user = useContext(UserContext).user;
-  console.log(user)
   return (
-    <UserProvider>
-      {user ? 
     <div className='container'>
       <Header />
       <Router>
-        <Ads path='/' />
+        <LandingPage path='/landing' />
+        <Ads path='/home' />
         <PostAd path='/new-ad' />
         <Profile path='/profile' />
         <UserPage path='/user/:username' />
+        <Inbox path='/inbox' />
+        <Messages path='/messages' />
       </Router>
-      <Footer /> 
-    </div> 
-    :
-    <div>
-      <Header />
-      <Router>
-        <LandingPage path='/' />
-        <SignIn path="/login"/>
-        <SignUp path='/signUp' />
-        <PasswordReset path='/passwordReset'/>
-      </Router>
-    </div>}
-    </UserProvider>
-  
-  )}
+      <Footer />
+    </div>
+  );
+}
 
 export default App;

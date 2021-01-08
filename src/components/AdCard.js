@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { AdCardStyled } from "../styles";
-import {db} from '../firebase';
+import { db } from "../firebase";
 import { Link } from "@reach/router";
-
 import { calculateDistance } from "../utils/calculateDistance";
 import Loading from "./Loading";
-import profilepic from "../images/profilepic.png";
+import avatar from "../images/avatar.png";
 const postcodes = require("node-postcodes.io");
 
 const AdCard = (props) => {
@@ -52,7 +51,7 @@ const AdCard = (props) => {
       <AdCardStyled>
         <div className='ad_user'>
           <Link className='username' to={`/user/${ad.username}`}>
-            <img src={profilepic} alt='user profile pic' />
+            <img src={avatar} alt='user profile pic' />
             <p>{ad.username}</p>{" "}
           </Link>
         </div>
@@ -61,7 +60,10 @@ const AdCard = (props) => {
           <br></br>
           <span>{ad.description}</span>
           <br></br>
-          <button className='emoji'>✉️</button>
+          <Link to={`/inbox`}>
+            {" "}
+            <button className='emoji'>✉️</button>
+          </Link>
           <button className='emoji'>❤️</button>
           {distance > 1 ? (
             <button className='distance'>{distance} miles away</button>
