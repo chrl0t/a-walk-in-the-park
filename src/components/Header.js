@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "@reach/router";
+import {auth} from '../firebase';
+import UserContext from '../providers/UserProvider'
 import { HeaderStyled } from "../styles";
 
+
+
 const Header = () => {
-  const user = null;
+  const user = useContext(UserContext);
+
   return (<div>
     { user ?
     <HeaderStyled className='header'>
@@ -16,6 +21,7 @@ const Header = () => {
       <Link className='header-title' to='/'>
         A Walk in the Park
       </Link>
+      <button onClick = {() => {auth.signOut()}}>Sign Out</button>
     </HeaderStyled>
     }
   </div>

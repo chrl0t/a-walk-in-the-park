@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { ProfilePicture, ProfileContainer } from "../styles";
-import { formatDOB, calculateAge } from "../utils/calculateAge";
-import Loading from "./Loading";
-import avatar from "../images/avatar.png";
+import React, { useEffect, useState } from 'react';
+import {db} from '../firebase'
+import { ProfilePicture, ProfileContainer } from '../styles'
+import Map from './Map/Map';
+
+import { formatDOB, calculateAge } from '../utils/calculateAge'
+  import Loading from './Loading';
+  import avatar from "../images/avatar.png";
+
 
 const UserPage = (props) => {
   const user = props.username;
@@ -41,6 +44,7 @@ const UserPage = (props) => {
     return <Loading />;
   } else {
     return (
+
       <ProfileContainer>
         <h2>{profile.username}</h2>
         <ProfilePicture src={avatar} width='100px'></ProfilePicture>
@@ -49,6 +53,7 @@ const UserPage = (props) => {
           <div className='fields'>Age: {age}</div>
           <div className='fields-gender'>Gender: {profile.gender}</div>
           <div className='fields'>{profile.bio}</div>
+          <Map />
         </div>
       </ProfileContainer>
     );
