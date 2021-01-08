@@ -18,14 +18,6 @@ import React, { useEffect, useState } from "react";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-  const user = useContext(AuthContext)
-
-
-  useEffect(() => {
-    if (user !== undefined) {
-      setLoggedIn(true)
-    }
-  })
 
   const setLogin = (bool) => {
     setLoggedIn(bool)
