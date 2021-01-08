@@ -7,25 +7,30 @@ import Ads from "./components/Ads";
 import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
-import Inbox from "./components/Inbox";
-import Messages from "./components/Messages";
+import Login from "./components/Login"
+import Signup from './components/Signup'
+import { AuthProvider } from "./Authentication";
+import { useContext } from 'react'
+import {AuthContext} from './Authentication'
+import InputUserDetails from './components/InputUserDetails'
+
 
 function App() {
   return (
-    <div className='container'>
+   <AuthProvider>
       <Header />
-      <Router>
-        <LandingPage path='/landing' />
-        <Ads path='/home' />
-        <PostAd path='/new-ad' />
-        <Profile path='/profile' />
-        <UserPage path='/user/:username' />
-        <Inbox path='/inbox' />
-        <Messages path='/messages' />
-      </Router>
-      <Footer />
-    </div>
-  );
-}
+        <Router>
+          <LandingPage path='/' />
+          <Login path='/login'/>
+          <Signup path='/signUp'/>
+          <InputUserDetails path='/signUpDetails'/>
+          <Ads path='/home' />
+          <PostAd path='/new-ad' />
+          <Profile path='/profile' />
+          <UserPage path='/user/:username' />
+        </Router>
+      <Footer /> 
+  </AuthProvider>
+)}
 
 export default App;

@@ -1,30 +1,34 @@
-import React, {useContext} from "react";
-import { Link } from "@reach/router";
-import {auth} from '../firebase';
-import UserContext from '../providers/UserProvider'
+import React, {useCallback, useState} from "react";
+import { Link, navigate } from "@reach/router";
 import { HeaderStyled } from "../styles";
+import app from '../firebase'
 
 
 
 const Header = () => {
-  const user = useContext(UserContext);
+  const [err, setErr] = useState()
 
-  return (<div>
-    { user ?
+  const handleLogout = useCallback(async e => {
+    try {
+      await app
+        .auth()
+        .signOut()
+        navigate("/")
+    } catch (error) {
+      setErr(err)
+      alert(err)
+    }
+  })
+
+  return (
+    <>
+    <p onClick={handleLogout}>Sign out</p>
     <HeaderStyled className='header'>
       <Link className='header-title' to='/home'>
         A Walk in the Park
       </Link>
     </HeaderStyled>
-    :
-    <HeaderStyled className='header'>
-      <Link className='header-title' to='/'>
-        A Walk in the Park
-      </Link>
-      <button onClick = {() => {auth.signOut()}}>Sign Out</button>
-    </HeaderStyled>
-    }
-  </div>
+    </>
     )
 };
 
