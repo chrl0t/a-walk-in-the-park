@@ -5,6 +5,8 @@ import home from "../images/home.png";
 import add from "../images/add.png";
 import user from "../images/user.png";
 import message from "../images/message.png";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication";
 
 const Footer = () => {
   return (
