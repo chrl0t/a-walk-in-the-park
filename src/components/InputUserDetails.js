@@ -27,7 +27,8 @@ const InputUserDetails = () => {
             gender: gender,
             postcode: postcode,
             bio: bio,
-            dob: dob
+            dob: dob,
+            id: username
           });
         navigate(`/home`);
     }
