@@ -281,6 +281,7 @@ export const AdCardStyled = styled.li`
     font-family: "Catamaran", sans-serif;
     line-height: 1.5rem;
     font-size: 1.2rem;
+    margin-bottom: 10px;
   }
 
   .ad_info span {

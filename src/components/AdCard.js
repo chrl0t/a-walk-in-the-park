@@ -57,7 +57,7 @@ const AdCard = (props) => {
         </div>
         <div className='ad_info'>
           <h2>{ad.title}</h2>
-          <br></br>
+          {/* <br></br> */}
           <span>{ad.description}</span>
           <br></br>
           <Link to={`/inbox`}>
