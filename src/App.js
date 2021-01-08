@@ -1,5 +1,5 @@
 import "./App.css";
-import { Router } from "@reach/router";
+import { navigate, Router } from "@reach/router";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LandingPage from "./components/LandingPage";
@@ -15,23 +15,59 @@ import Messages from "./components/Messages";
 import Inbox from "./components/Inbox";
 import React, { useEffect, useState } from "react";
 
+
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
+  const user = useContext(AuthContext)
+
+
+  useEffect(() => {
+    if (user !== undefined) {
+      setLoggedIn(true)
+    }
+  })
+
+  const setLogin = (bool) => {
+    setLoggedIn(bool)
+  }
+
+  const postLogin = () => {
+    navigate("/home")
+  }
+
+  const postLogout = () => {
+    navigate("/")
+  }
+
   return (
     <AuthProvider>
-      <Header />
-      <Router>
-        <LandingPage path='/' />
-        <Login path='/login' />
-        <Signup path='/signUp' />
-        <InputUserDetails path='/signUpDetails' />
-        <Ads path='/home' />
-        <PostAd path='/new-ad' />
-        <Profile path='/profile' />
-        <UserPage path='/user/:username' />
-        <Messages path='/messages' />
-        <Inbox path='/inbox' />
-      </Router>
-      <Footer />
+        {loggedIn ? 
+        <>
+        {postLogin()}
+        <Header setLoggedIn={setLogin} loggedIn={loggedIn}/>
+        <Router>
+          <InputUserDetails path='/signUpDetails' />
+          <Ads path='/home' />
+          <PostAd path='/new-ad' />
+          <Profile path='/profile' />
+          <UserPage path='/user/:username' />
+          <Messages path='/messages' />
+          <Inbox path='/inbox' />
+        </Router>
+        <Footer />
+        </>
+          :
+        <>
+          {postLogout()}
+          <Header setLoggedIn={setLogin} loggedIn={loggedIn}/>
+          <Router>
+            <LandingPage path='/' />
+            <Login path='/login' setLogin={setLogin} />
+            <Signup path='/signUp' />
+          </Router>
+          <Footer />
+        </>
+         }
     </AuthProvider>
   );
 }
