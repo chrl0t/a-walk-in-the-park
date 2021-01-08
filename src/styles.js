@@ -34,7 +34,8 @@ export const FooterStyled = styled.div`
 
   .home-button,
   .add-button,
-  .user-button {
+  .user-button,
+  .message-button {
     display: block;
     position: absolute;
     top: auto;
@@ -58,6 +59,14 @@ export const FooterStyled = styled.div`
     width: 3rem;
     right: 0%;
     padding-right: 0.8rem;
+  }
+
+  .message-button {
+    height: 3.5rem;
+    width: 3rem;
+    margin-top: 0.5rem;
+    position: flex;
+    margin-left: 6rem;
   }
 `;
 
