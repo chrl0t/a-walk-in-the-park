@@ -3,8 +3,15 @@ import { Redirect, navigate } from "@reach/router";
 import app from "../firebase.js";
 import { AuthContext } from "../Authentication.js";
 
-const Login = ({history}) => {
+const Login = (props) => {
     const [error, setError] = useState()
+
+    const handlePostLogin = () => {
+      console.log("in handle post login")
+      if (!error) {
+        props.setLogin(true)
+      }
+    }
 
     const handleLogin = useCallback(
         async event => {
@@ -13,17 +20,16 @@ const Login = ({history}) => {
           try {
             await app
               .auth()
-              .signInWithEmailAndPassword(email.value, password.value);
-            
+              .signInWithEmailAndPassword(email.value, password.value).then(()=>{
+                handlePostLogin()
+              })
           } catch (err) {
             setError(err)
             alert(err);
           }
 
-          if (!error) navigate("/home")
-        },
 
-        [history]
+        }, []
       );
 
     const { currentUser } = useContext(AuthContext);
