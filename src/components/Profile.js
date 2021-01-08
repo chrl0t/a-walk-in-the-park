@@ -1,47 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import {db} from '../firebase'
-import profilepic from '../images/download.jpeg'
-import editLogo from '../images/edit.png'
-import Loading from './Loading'
-import EditProfile from './EditProfile'
-import { ProfilePicture, ProfileContainer } from '../styles'
-import { formatDOB, calculateAge } from '../utils/calculateAge'
-import { useContext } from 'react'
-import {AuthContext} from '../Authentication'
-
-
+import React, { useEffect, useState } from "react";
+import { db } from "../firebase";
+import profilepic from "../images/download.jpeg";
+import editLogo from "../images/edit.png";
+import Loading from "./Loading";
+import EditProfile from "./EditProfile";
+import { ProfilePicture, ProfileContainer } from "../styles";
+import { formatDOB, calculateAge } from "../utils/calculateAge";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication";
 
 const Profile = () => {
-    const { currentUser } = useContext(AuthContext)
-    let user;
-    if (currentUser) {
-        user = currentUser.email
-    }
-    
-    const [profile, setProfile] = useState({})
-    const [loading, setLoading] = useState(false)
-    const [edit, setEdit] = useState(false)
-    const [age, setAge] = useState(0)
+  const { currentUser } = useContext(AuthContext);
+  let user;
+  if (currentUser) {
+    user = currentUser.email;
+  }
 
-    useEffect( () => {
-        async function fetchData(){
-            const userRef = db.collection('users')
-            const snapshot = await userRef.where('email', '==', user).get()
-            if (snapshot.empty) {
-                console.log("No matching documents")
-                return;
-            }
-            let userInfo = {}
-    
-            snapshot.forEach(doc => {
-                userInfo = doc.data()
-            })
-            
-            setProfile(userInfo)        
-        
-        const dob = formatDOB(userInfo.dob)
-        
-        const age = calculateAge(dob)
+  const [profile, setProfile] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [age, setAge] = useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const userRef = db.collection("users");
+      const snapshot = await userRef.where("email", "==", user).get();
+      if (snapshot.empty) {
+        console.log("No matching documents");
+        return;
+      }
+      let userInfo = {};
+
+      snapshot.forEach((doc) => {
+        userInfo = doc.data();
+      });
+
+      setProfile(userInfo);
 
       const dob = formatDOB(userInfo.dob);
 
