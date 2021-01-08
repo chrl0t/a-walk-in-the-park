@@ -14,7 +14,6 @@ const EditProfile = (props) => {
       // username: username,
       bio: bio
     });
-    navigate(`/home`);
   };
   return (
     <ProfileContainer>
@@ -42,9 +41,9 @@ const EditProfile = (props) => {
         />
       </form>
 
-      {/* <button id='hide' onClick={(e) => props.handleEdit(e)}>
+      <button id='hide' onClick={(e) => props.handleEdit(e)}>
         Done
-      </button> */}
+      </button>
     </ProfileContainer>
   );
 };
