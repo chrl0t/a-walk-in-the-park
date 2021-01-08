@@ -14,7 +14,7 @@ import UserProvider, { UserContext } from './providers/UserProvider';
 import { useContext } from "react";
 
 function App() {
-  const user = useContext(UserContext);
+  const user = useContext(UserContext).user;
   console.log(user)
   return (
     <UserProvider>
@@ -22,8 +22,7 @@ function App() {
     <div className='container'>
       <Header />
       <Router>
-        <LandingPage path='/' />
-        <Ads path='/home' />
+        <Ads path='/' />
         <PostAd path='/new-ad' />
         <Profile path='/profile' />
         <UserPage path='/user/:username' />

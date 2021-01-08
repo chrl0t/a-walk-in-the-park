@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {db} from '../firebase'
 import { ProfilePicture, ProfileContainer } from '../styles'
+import Map from './Map/Map';
 
 import { formatDOB, calculateAge } from '../utils/calculateAge'
   import Loading from './Loading';
@@ -51,6 +52,7 @@ if (loading) {
             <p>Dob: {profile.dob}</p>
             <p>Age: {age}</p>
             <p>Bio: {profile.bio}</p>
+            <Map />
         </ProfileContainer>
     )}
 };
