@@ -32,6 +32,7 @@ class Inbox extends React.Component {
     /* Retrieve the two users that will participate in the conversation */
     const currentUser = this.state;
     const user = dummyUsers.find((user) => user.id === userId);
+    console.log(user)
 
     /* Session initialization code */
     Talk.ready
@@ -68,6 +69,7 @@ class Inbox extends React.Component {
 
   render() {
     const currentUser = this.state;
+  
     return (
       <div className='users'>
         <div className='users-container'>
