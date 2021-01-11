@@ -59,7 +59,6 @@ function App() {
             <Login path='/login' setLogin={setLogin} />
             <Signup path='/signUp' />
           </Router>
-          <Footer />
         </>
       )}
     </AuthProvider>

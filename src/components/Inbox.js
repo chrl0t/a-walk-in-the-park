@@ -30,8 +30,9 @@ class Inbox extends React.Component {
           const me = new Talk.User(userInfo);
           const other = new Talk.User(user);
 
-          /* Create a talk session if this does not exist. Remember to replace tthe APP ID with the one on your dashboard */
-          // if (!window.talkSession) {
+
+        /* Create a talk session if this does not exist. Remember to replace tthe APP ID with the one on your dashboard */
+        // if (!window.talkSession) {
           window.talkSession = new Talk.Session({
             appId: "tP8HPC7p",
             me: me
@@ -96,6 +97,7 @@ class Inbox extends React.Component {
 
   render() {
     const currentUser = this.state;
+  
     return (
       <div className='users'>
         <div className='users-container'>
