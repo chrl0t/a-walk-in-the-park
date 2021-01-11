@@ -15,7 +15,7 @@ const Footer = () => {
         <Link to='/home'>
           <img className='home-button' src={home} alt='home-button' />
         </Link>
-        <Link to='/inbox'>
+        <Link to='/messages'>
           <img className='message-button' src={message} alt='message-button' />
         </Link>
         <Link to='/new-ad'>

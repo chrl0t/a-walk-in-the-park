@@ -6,15 +6,11 @@ import { AuthContext } from "../Authentication";
 class Messages extends Component {
   static contextType = AuthContext;
   state = {
-    id: "grandpajoe",
-    name: "Joe Bucket",
-    role: "Member",
-    photoUrl:
-      "https://static.wikia.nocookie.net/roalddahl/images/b/b9/Illmannered.jpg/revision/latest/top-crop/width/360/height/450?cb=20140911174536"
+    me: ""
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state, "<<<state changed!")
+    console.log(this.state, "<<<state changed!");
     Talk.ready
       .then(() => {
         const me = new Talk.User(this.state);
@@ -31,17 +27,18 @@ class Messages extends Component {
       })
       .catch((e) => console.error(e));
   }
-  
+
   componentDidMount() {
-    const user = this.context.currentUser
+    const user = this.context.currentUser;
 
     const userInfo = {
       id: user.id,
       name: user.name,
       role: "Member",
-      photoUrl: "https://static.wikia.nocookie.net/roalddahl/images/b/b9/Illmannered.jpg/revision/latest/top-crop/width/360/height/450?cb=20140911174536"
-    }
-   
+      photoUrl:
+        "https://www.pinclipart.com/picdir/middle/8-82428_profile-clipart-generic-user-gender-neutral-head-icon.png"
+    };
+
     this.setState(userInfo);
   }
 
