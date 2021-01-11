@@ -23,17 +23,12 @@ const UserPage = (props) => {
         return;
       }
       let userInfo = {};
-
       snapshot.forEach((doc) => {
         userInfo = doc.data();
       });
-
       setProfile(userInfo);
-
       const dob = formatDOB(userInfo.dob);
-
       const age = calculateAge(dob);
-
       setAge(age);
       setLoading(false);
     }
@@ -53,7 +48,7 @@ const UserPage = (props) => {
           <div className='fields'>Age: {age}</div>
           <div className='fields-gender'>Gender: {profile.gender}</div>
           <div className='fields'>{profile.bio}</div>
-          <Map />
+          <Map centerLatitude={53.4808} centerLongitude={-2.2426}/>
         </div>
       </ProfileContainer>
     );
