@@ -45,8 +45,6 @@ const AdCard = (props) => {
   if (loading) {
     return <Loading />;
   } else {
-    // console.log(profile.postcode, 'profile-------------')
-    // console.log(ad.postcode, 'ad-------------------')
     return (
       <AdCardStyled>
         <div className='ad_user'>
