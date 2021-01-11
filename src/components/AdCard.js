@@ -59,7 +59,7 @@ const AdCard = (props) => {
           <h2>{ad.title}</h2>
           <span>{ad.description}</span>
           <br></br>
-          <Link to={`/messages`}>
+          <Link to={`/inbox/${ad.username}`}>
             {" "}
             <button className='emoji'>✉️</button>
           </Link>

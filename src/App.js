@@ -14,45 +14,46 @@ import InputUserDetails from "./components/InputUserDetails";
 import Messages from "./components/Messages";
 import Inbox from "./components/Inbox";
 import React, { useEffect, useState } from "react";
-
+import Users from "./components/Users";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const setLogin = (bool) => {
-    setLoggedIn(bool)
-  }
+    setLoggedIn(bool);
+  };
 
   const postLogin = () => {
-    navigate("/home")
-  }
+    navigate("/home");
+  };
 
   const postLogout = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
     <AuthProvider>
-        {loggedIn ? 
+      {loggedIn ? (
         <>
-        {postLogin()}
-        {console.log("1")}
-        <Header setLoggedIn={setLogin} loggedIn={loggedIn}/>
-        <Router>
-          <Ads path='/home' />
-          <PostAd path='/new-ad' />
-          <Profile path='/profile' />
-          <UserPage path='/user/:username' />
-          <Messages path='/messages' />
-          <Inbox path='/inbox' />
-        </Router>
-        <Footer />
+          {postLogin()}
+          <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
+          <Router>
+            {/* <InputUserDetails path='/signUpDetails' /> */}
+            <Ads path='/home' />
+            <PostAd path='/new-ad' />
+            <Profile path='/profile' />
+            <UserPage path='/user/:username' />
+            <Messages path='/messages' />
+            <Inbox path='/inbox' />
+            <Inbox path='/inbox/:username' />
+            <Users path='/users' />
+          </Router>
+          <Footer />
         </>
-          :
+      ) : (
         <>
           {postLogout()}
-          {console.log("2")}
-          <Header setLoggedIn={setLogin} loggedIn={loggedIn}/>
+          <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
           <Router>
             <LandingPage path='/' />
             <InputUserDetails path='/signUpDetails' setLogin={setLogin}/>
@@ -60,7 +61,7 @@ function App() {
             <Signup path='/signUp' setLogin={setLogin}/>
           </Router>
         </>
-         }
+      )}
     </AuthProvider>
   );
 }
