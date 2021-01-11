@@ -13,11 +13,8 @@ class Messages extends Component {
       "https://static.wikia.nocookie.net/roalddahl/images/b/b9/Illmannered.jpg/revision/latest/top-crop/width/360/height/450?cb=20140911174536"
   };
 
-  componentDidMount() {
-    let user = firebase.auth().currentUser;
-    console.log(user);
-    this.setState({ id: "charlotte" });
-    console.log(this.state);
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.state, "<<<state changed!")
     Talk.ready
       .then(() => {
         const me = new Talk.User(this.state);
@@ -33,6 +30,19 @@ class Messages extends Component {
         this.inbox.mount(this.container);
       })
       .catch((e) => console.error(e));
+  }
+  
+  componentDidMount() {
+    const user = this.context.currentUser
+
+    const userInfo = {
+      id: user.id,
+      name: user.name,
+      role: "Member",
+      photoUrl: "https://static.wikia.nocookie.net/roalddahl/images/b/b9/Illmannered.jpg/revision/latest/top-crop/width/360/height/450?cb=20140911174536"
+    }
+   
+    this.setState(userInfo);
   }
 
   render() {

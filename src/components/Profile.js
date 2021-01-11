@@ -45,7 +45,7 @@ const Profile = () => {
       setLoading(false);
     }
     fetchData();
-  }, []);
+  });
 
   const handleEdit = (e) => {
     if (e.target.id === "show") setEdit(true);
