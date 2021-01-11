@@ -27,8 +27,6 @@ export const AuthProvider = ({ children }) => {
           setCurrentUser(userInfo);
       }
       if (user) fetchData();
-      
-      console.log(currentUser)
       setPending(false)
      });
    }, []);

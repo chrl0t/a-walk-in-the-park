@@ -2,7 +2,7 @@ import React, { useCallback, useState} from "react";
 import { Link, navigate } from '@reach/router'
 import app from "../firebase.js";
 
-const Signup = ({history}) => {
+const Signup = (props) => {
     const [error, setError] = useState()
 
     const handleSignup = useCallback(async e => {
@@ -12,14 +12,16 @@ const Signup = ({history}) => {
         try {
             await app
                 .auth()
-                .createUserWithEmailAndPassword(email.value, password.value);
+                .createUserWithEmailAndPassword(email.value, password.value).then(()=>{
+                    navigate("/signUpDetails")
+                })
         } catch (err) {
             setError(err)
             alert(err)
         }
         if (!error) navigate("/signUpDetails")
 
-    }, [history])
+    }, [])
 
     return (
         <div>

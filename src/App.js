@@ -38,7 +38,7 @@ function App() {
           {postLogin()}
           <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
           <Router>
-            <InputUserDetails path='/signUpDetails' />
+            {/* <InputUserDetails path='/signUpDetails' /> */}
             <Ads path='/home' />
             <PostAd path='/new-ad' />
             <Profile path='/profile' />
@@ -56,8 +56,9 @@ function App() {
           <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
           <Router>
             <LandingPage path='/' />
+            <InputUserDetails path='/signUpDetails' setLogin={setLogin}/>
             <Login path='/login' setLogin={setLogin} />
-            <Signup path='/signUp' />
+            <Signup path='/signUp' setLogin={setLogin}/>
           </Router>
         </>
       )}
