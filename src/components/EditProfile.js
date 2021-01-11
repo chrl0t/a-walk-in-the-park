@@ -10,10 +10,12 @@ const EditProfile = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    db.collection("users").doc("grandpajoe").update({
+    db.collection("users").doc(props.userInfo.username).update({
       // username: username,
       bio: bio
     });
+    
+    props.updateBio(bio)
   };
   return (
     <ProfileContainer>
@@ -30,7 +32,7 @@ const EditProfile = (props) => {
         <textarea
           type='text'
           value={bio}
-          placeholder={props.userInfo.bio}
+          placeholder={props.bio}
           onChange={(e) => setBio(e.target.value)}
         />
         <br />

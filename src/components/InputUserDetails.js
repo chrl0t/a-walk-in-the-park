@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../Authentication'
 import { navigate } from "@reach/router";
-import {db} from "../firebase";
+import {db, auth} from "../firebase";
 
-const InputUserDetails = () => {
+const InputUserDetails = (props) => {
     const { currentUser } = useContext(AuthContext)
     const [email, setEmail] = useState()
     const [name, setName] = useState()
@@ -15,7 +15,8 @@ const InputUserDetails = () => {
 
 
     useEffect(() => {
-        setEmail(currentUser.email)
+        console.log(auth.currentUser)
+        setEmail(auth.currentUser.email)
     }, [])
 
     const handleSubmit = (e) => {
@@ -30,7 +31,8 @@ const InputUserDetails = () => {
             dob: dob,
             id: username
           });
-        navigate(`/home`);
+
+        props.setLogin(true)
     }
 
     return (
