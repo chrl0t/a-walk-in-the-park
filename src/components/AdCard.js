@@ -5,12 +5,16 @@ import { Link } from "@reach/router";
 import { calculateDistance } from "../utils/calculateDistance";
 import Loading from "./Loading";
 import avatar from "../images/avatar.png";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication";
+
 const postcodes = require("node-postcodes.io");
 
 const AdCard = (props) => {
-  const [loading, setLoading] = useState(true);
+  const { currentUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const [distance, setDistance] = useState(0);
-  const { ad, profile } = props;
+  const { ad, profile, id } = props;
 
   useEffect(() => {
     getDistance(profile.postcode, ad.postcode).then((distance) => {
@@ -26,8 +30,6 @@ const AdCard = (props) => {
     return result;
   }
 
-  // .replace(/\s/g,'')
-
   async function getDistance(profilePostcode, adPostcode) {
     if (adPostcode && profilePostcode) {
       let pp = await getGeolocation(profilePostcode);
@@ -42,6 +44,22 @@ const AdCard = (props) => {
     }
   }
 
+  const deleteAd = () => {
+    let adToDelete = db
+      .collection("ads")
+      .where("title", "==", ad.title)
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log(doc.id, "=>", doc.data());
+          let deletedDoc = db.collection("ads").doc(doc.id).delete();
+        });
+      })
+      .catch((err) => {
+        console.log("Error getting documents", err);
+      });
+  };
+
   if (loading) {
     return <Loading />;
   } else {
@@ -54,7 +72,12 @@ const AdCard = (props) => {
           </Link>
         </div>
         <div className='ad_info'>
-          <h2>{ad.title}</h2>
+          {ad.username === currentUser.username ? (
+            <div className='delete-button' onClick={() => deleteAd()}>
+              ❌
+            </div>
+          ) : null}
+          <h2>{ad.title} </h2>
           <span>{ad.description}</span>
           <br></br>
           <Link to={`/inbox/${ad.username}`}>

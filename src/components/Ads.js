@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {db} from "../firebase";
+import { db } from "../firebase";
 import Loading from "./Loading";
 import AdCard from "./AdCard";
 import { AdList } from "../styles";
-import { useContext } from 'react'
-import {AuthContext} from '../Authentication'
+import { useContext } from "react";
+import { AuthContext } from "../Authentication";
 
 const Ads = () => {
   const user = "grandpajoe";
   const [ads, setAds] = useState([]);
+  const [adId, setAdId] = useState([]);
   const [profile, setProfile] = useState({});
   const [loading, setLoading] = useState(true);
   const [wantsChild, setWantsChild] = useState("");
@@ -110,50 +111,47 @@ const Ads = () => {
     }
   };
 
-
-
-  const { currentUser } = useContext(AuthContext)
-
+  const { currentUser } = useContext(AuthContext);
 
   if (loading) {
     return <Loading />;
   } else {
     return (
       <>
-      {currentUser ? <p>Signed in with {currentUser.email}</p> : null}
-      
-      <AdList>
-        <h1>Find a walking buddy:</h1>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <p className='question'>
-            Do you want to walk with someone with children?
-          </p>
-          <select
-            className='select-box'
-            onChange={(e) => setWantsChild(e.target.value)}
-          >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Don't mind</option>
-          </select>
-          <p className='question'>
-            Do you want to walk with someone with a dog?
-          </p>
-          <select
-            className='select-box'
-            onChange={(e) => setWantsDog(e.target.value)}
-          >
-            <option>Yes</option>
-            <option>No</option>
-            <option>Don't mind</option>
-          </select>
-          <br></br>
-          <input type='submit' className='submit-button' />
-        </form>
-        {ads.map((ad) => {
-          return <AdCard ad={ad} profile={profile} />;
-        })}
-      </AdList>
+        {currentUser ? <p>Signed in with {currentUser.email}</p> : null}
+
+        <AdList>
+          <h1>Find a walking buddy:</h1>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <p className='question'>
+              Do you want to walk with someone with children?
+            </p>
+            <select
+              className='select-box'
+              onChange={(e) => setWantsChild(e.target.value)}
+            >
+              <option>Yes</option>
+              <option>No</option>
+              <option>Don't mind</option>
+            </select>
+            <p className='question'>
+              Do you want to walk with someone with a dog?
+            </p>
+            <select
+              className='select-box'
+              onChange={(e) => setWantsDog(e.target.value)}
+            >
+              <option>Yes</option>
+              <option>No</option>
+              <option>Don't mind</option>
+            </select>
+            <br></br>
+            <input type='submit' className='submit-button' />
+          </form>
+          {ads.map((ad) => {
+            return <AdCard ad={ad} profile={profile} key={ad.title} />;
+          })}
+        </AdList>
       </>
     );
   }
