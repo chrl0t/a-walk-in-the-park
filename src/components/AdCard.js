@@ -88,7 +88,7 @@ const AdCard = (props) => {
           {distance > 1 ? (
             <button className='distance'>{distance} miles away</button>
           ) : (
-            <button className='distance'>Less than a mile away</button>
+            <button className='distance'>Under a mile away</button>
           )}
         </div>
       </AdCardStyled>

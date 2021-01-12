@@ -1,8 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../Authentication'
-import { navigate } from "@reach/router";
+import { navigate, Link } from "@reach/router";
 import {db, auth} from "../firebase";
 import app from "../firebase.js";
+import {LoginContainer} from '../styles'
 
 
 const InputUserDetails = (props) => {
@@ -49,7 +50,8 @@ const InputUserDetails = (props) => {
     }
 
     return (
-        <div>
+        <LoginContainer>
+            <h1>Sign Up</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <p>Full name: </p>
                 <input type="text" required onChange={(e) => setName(e.target.value)}/>
@@ -67,9 +69,10 @@ const InputUserDetails = (props) => {
                 <input type="text" required onChange={(e) => setBio(e.target.value)}/>
                 <p>Dob:</p>
                 <input type="date" required onChange={(e) => setDob(e.target.value)}/>
-                <input type="submit"/>
+                <button type="submit">Sign in</button>
             </form>
-        </div>
+            <p>Already have an account? Login <Link to="/login">here!</Link></p>
+        </LoginContainer>
     );
 };
 

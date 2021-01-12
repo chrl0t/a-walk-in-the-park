@@ -35,7 +35,8 @@ export const FooterStyled = styled.div`
   .home-button,
   .add-button,
   .user-button,
-  .message-button {
+  .message-button,
+  .favourite-button {
     display: block;
     position: absolute;
     top: auto;
@@ -47,26 +48,37 @@ export const FooterStyled = styled.div`
     width: 3rem;
     left: 0%;
     padding-left: 0.8rem;
+    margin-top: 1.1rem;
   }
 
   .add-button {
     height: 2.5rem;
     right: 47%;
+    margin-top: 1.2rem;
   }
 
   .user-button {
-    height: 3rem;
-    width: 3rem;
+    height: 3.1rem;
+    width: 3.2rem;
     right: 0%;
     padding-right: 0.8rem;
+    margin-top: 0.9rem;
   }
 
   .message-button {
-    height: 3.5rem;
-    width: 3rem;
-    margin-top: 0.5rem;
+    height: 3.3rem;
+    width: 2.7rem;
+    margin-top: 0.8rem;
     position: flex;
-    margin-left: 6rem;
+    margin-left: 6.2rem;
+  }
+
+  .favourite-button {
+    height: 2.8rem;
+    width: 2.8rem;
+    margin-left: 16.3rem;
+    margin-top: 1.1rem;
+    position: flex;
   }
 `;
 
@@ -86,7 +98,7 @@ export const AdForm = styled.div`
     font-weight: bold;
     border-radius: 0.4rem;
     width: 20rem;
-    height: 3rem;
+    height: 2.5rem;
     margin: 0.5em;
     text-align: center;
   }
@@ -95,13 +107,13 @@ export const AdForm = styled.div`
     font-family: "Catamaran", sans-serif;
     color: #00887a;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 0.8rem;
   }
 
   input {
     width: 20rem;
-    height: 2.5rem;
+    height: 2rem;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
@@ -111,7 +123,7 @@ export const AdForm = styled.div`
 
   textarea {
     width: 20rem;
-    height: 8rem;
+    height: 7rem;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
@@ -253,14 +265,18 @@ export const AdCardStyled = styled.li`
     cursor: pointer;
     overflow: hidden;
     outline: none;
+    padding-right: 0rem;
+    margin-right: 0rem;
   }
 
   .emoji {
     font-size: 1.5rem;
+    padding-right: 0rem;
+    margin-right: 0rem;
   }
 
   .distance {
-    font-size: 0.75rem;
+    font-size: 0.73rem;
     font-weight: bold;
     color: #00887a;
   }
@@ -317,6 +333,24 @@ export const ProfileContainer = styled.div`
   padding: 0.5rem;
   padding-top: 0rem;
 
+  .logout-button {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #00887a;
+    font-family: "Catamaran", sans-serif;
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
+    width: 8rem;
+    height: 1.8rem;
+    margin: 0.5em;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+    padding-bottom: 0rem;
+    align-items: center;
+  }
+
   img {
     padding-top: 0rem;
     margin-top: 0rem;
@@ -372,3 +406,39 @@ export const ProfileContainer = styled.div`
 export const ProfilePicture = styled.img`
   border-radius: 50%;
 `;
+
+
+// LOGIN STYLES
+
+
+export const LoginContainer = styled.div`
+  height: auto;
+  text-align: left;
+  padding-left: 50px;
+
+  h1 {
+    color: #00887a;
+  }
+
+  input {
+    width: 80%;
+    height: 30px;
+    border: none;
+    background-color: white;
+    border-bottom: 2px solid #00887a;
+  }
+
+  button {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #00887a;
+    font-family: "Catamaran", sans-serif;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    width: 80%;
+    margin-top: 30px;
+    text-align: center;
+  }
+`
+
