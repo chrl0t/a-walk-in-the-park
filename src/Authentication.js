@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
 
    useEffect(() => {
       app.auth().onAuthStateChanged((user) => {
+        console.log(user, "user in auth")
 
         async function fetchData() {
           const userRef = db.collection("users");
@@ -17,15 +18,16 @@ export const AuthProvider = ({ children }) => {
           if (snapshot.empty) {
             console.log("No matching documents");
             return;
-          }
-          let userInfo = {};
+          } else {
+            let userInfo = {};
   
-          snapshot.forEach((doc) => {
-            userInfo = doc.data();
-          });
-    
-          setCurrentUser(userInfo);
-      }
+            snapshot.forEach((doc) => {
+              userInfo = doc.data();
+            });
+            console.log(userInfo)
+            setCurrentUser(userInfo);
+          } 
+        }
       if (user) fetchData();
       setPending(false)
      });
@@ -37,7 +39,8 @@ export const AuthProvider = ({ children }) => {
    return (
      <AuthContext.Provider
        value={{
-         currentUser
+         currentUser,
+         setCurrentUser: () => {}
        }}
      >
        {children}

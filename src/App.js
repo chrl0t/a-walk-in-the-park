@@ -13,32 +13,27 @@ import { AuthProvider } from "./Authentication";
 import InputUserDetails from "./components/InputUserDetails";
 import Messages from "./components/Messages";
 import Inbox from "./components/Inbox";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Users from "./components/Users";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const setLogin = (bool) => {
+    if (!bool) {
+      navigate("/")
+    }
     setLoggedIn(bool);
-  };
-
-  const postLogin = () => {
-    navigate("/home");
-  };
-
-  const postLogout = () => {
-    navigate("/");
   };
 
   return (
     <AuthProvider>
-      {loggedIn ? (
-        <>
-          {postLogin()}
           <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
           <Router>
-            {/* <InputUserDetails path='/signUpDetails' /> */}
+            <InputUserDetails path='/signUpDetails' setLogin={setLogin}/>
+            <LandingPage path='/' />
+            <Login path='/login' setLogin={setLogin} />
+            <Signup path='/signUp' setLogin={setLogin}/>
             <Ads path='/home' />
             <PostAd path='/new-ad' />
             <Profile path='/profile' />
@@ -48,20 +43,7 @@ function App() {
             <Inbox path='/inbox/:username' />
             <Users path='/users' />
           </Router>
-          <Footer />
-        </>
-      ) : (
-        <>
-          {postLogout()}
-          <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
-          <Router>
-            <LandingPage path='/' />
-            <InputUserDetails path='/signUpDetails' setLogin={setLogin}/>
-            <Login path='/login' setLogin={setLogin} />
-            <Signup path='/signUp' setLogin={setLogin}/>
-          </Router>
-        </>
-      )}
+          {loggedIn ? <Footer /> : null}
     </AuthProvider>
   );
 }
