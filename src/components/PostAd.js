@@ -23,7 +23,7 @@ const PostAd = () => {
       title: title,
       description: body,
       username: user,
-      "created at": timestamp,
+      created_at: timestamp,
       postcode: postcode,
       hasChild: hasChild,
       hasDog: hasDog

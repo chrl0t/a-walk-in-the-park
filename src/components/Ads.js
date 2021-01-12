@@ -17,7 +17,7 @@ const Ads = () => {
   useEffect(() => {
     async function fetchData() {
       const adsRef = db.collection("ads");
-      const snapshot = await adsRef.orderBy("created at", "desc").get();
+      const snapshot = await adsRef.orderBy("created_at", "desc").get();
       const fetchedAds = [];
       snapshot.forEach((doc) => {
         const ad = doc.data();
@@ -48,7 +48,7 @@ const Ads = () => {
           .collection("ads")
           .where("hasChild", "==", child)
           .where("hasDog", "==", dog);
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
+        const snapshot = await adsRef.orderBy("created_at", "desc").get();
         const fetchedAds = [];
         snapshot.forEach((doc) => {
           const ad = doc.data();
@@ -61,7 +61,7 @@ const Ads = () => {
     } else if (wantsChild === "Don't mind" && wantsDog === "Don't mind") {
       async function fetchData() {
         const adsRef = db.collection("ads");
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
+        const snapshot = await adsRef.orderBy("created_at", "desc").get();
         const fetchedAds = [];
         snapshot.forEach((doc) => {
           const ad = doc.data();
@@ -84,7 +84,7 @@ const Ads = () => {
       }
       async function fetchData() {
         const adsRef = db.collection("ads").where(property, "==", dogOrChild);
-        const snapshot = await adsRef.orderBy("created at", "desc").get();
+        const snapshot = await adsRef.orderBy("created_at", "desc").get();
         const fetchedAds = [];
         snapshot.forEach((doc) => {
           const ad = doc.data();

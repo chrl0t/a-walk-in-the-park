@@ -57,12 +57,16 @@ const AdCard = (props) => {
       .catch((err) => {
         console.log("Error getting documents", err);
       });
-    props.handleDelete(ad.title)
+    props.handleDelete(ad.title);
   };
 
   if (loading) {
     return <Loading />;
   } else {
+    // console.log(ad.created_at.seconds);
+    // let date = new Date();
+    // date.setSeconds(ad.created_at.seconds);
+    // console.log(date);
     return (
       <AdCardStyled>
         <div className='ad_user'>
@@ -77,7 +81,9 @@ const AdCard = (props) => {
               ❌
             </div>
           ) : null}
-          <h2>{ad.title} </h2>
+          <h2>
+            {ad.title} {ad.created_at.seconds}
+          </h2>
           <span>{ad.description}</span>
           <br></br>
           <Link to={`/inbox/${ad.username}`}>
