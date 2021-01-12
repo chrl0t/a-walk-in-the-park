@@ -21,6 +21,7 @@ const Profile = (props) => {
   const [edit, setEdit] = useState(false);
   const [age, setAge] = useState(0);
   const [ads, setAds] = useState([])
+  const [err, setErr] = useState()
 
   useEffect(() => {
     const dob = formatDOB(currentUser.dob);
