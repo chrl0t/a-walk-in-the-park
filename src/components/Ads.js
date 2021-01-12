@@ -97,6 +97,14 @@ const Ads = () => {
     }
   };
 
+  const handleDelete = (adToDelete) => {
+    const filteredAds = ads.filter(ad => {
+      return ad.title !== adToDelete
+    })
+
+    setAds(filteredAds)
+  }
+
 
   if (loading) {
     return <Loading />;
@@ -134,7 +142,7 @@ const Ads = () => {
             <input type='submit' className='submit-button' />
           </form>
           {ads.map((ad) => {
-            return <AdCard ad={ad} key={ad.title} />;
+            return <AdCard ad={ad} key={ad.title} handleDelete={handleDelete} />;
           })}
         </AdList>
       </>

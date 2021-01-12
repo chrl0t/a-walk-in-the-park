@@ -3,20 +3,23 @@ import { db } from "../firebase";
 import firebase from "firebase";
 import { AdForm } from "../styles";
 import { navigate } from "@reach/router";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication";
 
 const PostAd = () => {
+  const { currentUser } = useContext(AuthContext);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [hasChild, setHasChild] = useState(false);
   const [hasDog, setHasDog] = useState(false);
-  const user = "grandpajoe";
-  const postcode = "LS18 4NA";
+  const user = currentUser.username;
+  const postcode = currentUser.postcode;
   const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const adRef = db.collection("ads").add({
+    db.collection("ads").add({
       title: title,
       description: body,
       username: user,

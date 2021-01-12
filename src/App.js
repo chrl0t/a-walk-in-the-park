@@ -22,6 +22,7 @@ function App() {
   const setLogin = (bool) => {
     if (!bool) {
       navigate("/")
+      window.location.reload()
     }
     setLoggedIn(bool);
   };

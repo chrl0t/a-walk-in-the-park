@@ -58,9 +58,10 @@ const AdCard = (props) => {
       .catch((err) => {
         console.log("Error getting documents", err);
       });
-  };
 
-  console.log(currentUser);
+
+    props.handleDelete(ad.title)
+  };
 
   if (loading) {
     return <Loading />;

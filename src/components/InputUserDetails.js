@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../Authentication'
 import { navigate } from "@reach/router";
 import {db, auth} from "../firebase";
+import app from "../firebase.js";
 
 
 const InputUserDetails = (props) => {
@@ -13,44 +14,51 @@ const InputUserDetails = (props) => {
     const [postcode, setPostcode] = useState()
     const [bio, setBio] = useState()
     const [dob, setDob] = useState()
+    const [error, setError] = useState()
 
-
-    useEffect(() => {
-        console.log(auth.currentUser)
-        setEmail(auth.currentUser.email)
-    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        const { password } = e.target.elements
 
         db.collection("users").doc(username).set({
             email: email,
+            name: name,
             username: username,
             gender: gender,
             postcode: postcode,
             bio: bio,
             dob: dob,
             id: username
-        });
-
-        context.setCurrentUser({
-            email: email,
-            username: username,
-            gender: gender,
-            postcode: postcode,
-            bio: bio,
-            dob: dob,
-            id: username
+        }).then(() => {
+            async function signIn() {
+                try {
+                    await app
+                        .auth()
+                        .createUserWithEmailAndPassword(email, password.value).then(()=>{
+                            navigate("/home")
+                        })
+                } catch (err) {
+                    setError(err)
+                    alert(err)
+                }
+            }
+          signIn()
+          props.setLogin(true)
         })
-        props.setLogin(true)
-        navigate("/home")
     }
 
     return (
         <div>
             <form onSubmit={(e) => handleSubmit(e)}>
+                <p>Full name: </p>
+                <input type="text" required onChange={(e) => setName(e.target.value)}/>
                 <p>Username:</p>
                 <input type="text" required onChange={(e) => setUsername(e.target.value)}/>
+                <p>Email: </p>
+                <input type="text" required id="email" onChange={(e) => setEmail(e.target.value)} />
+                <p>Password: </p>
+                <input type="text" required id="password"/>
                 <p>Gender:</p>
                 <input type="text" required onChange={(e) => setGender(e.target.value)}/>
                 <p>Postcode:</p>
