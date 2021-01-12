@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
           if (snapshot.empty) {
             console.log("No matching documents");
             return;
-          } else {
+          } 
             let userInfo = {};
   
             snapshot.forEach((doc) => {
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             });
             console.log(userInfo)
             setCurrentUser(userInfo);
-          } 
+          
         }
       if (user) fetchData();
       setPending(false)

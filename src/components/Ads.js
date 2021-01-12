@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { db } from "../firebase";
 import Loading from "./Loading";
 import AdCard from "./AdCard";
 import { AdList } from "../styles";
-import { useContext } from "react";
 import { AuthContext } from "../Authentication";
 
 const Ads = () => {
-  const user = "grandpajoe";
+  const { currentUser } = useContext(AuthContext);
+  const [profile, setProfile] = useState(currentUser);
+  const [loading, setLoading] = useState(true);
   const [ads, setAds] = useState([]);
   const [adId, setAdId] = useState([]);
-  const [profile, setProfile] = useState({});
-  const [loading, setLoading] = useState(true);
   const [wantsChild, setWantsChild] = useState("");
   const [wantsDog, setWantsDog] = useState("");
 
@@ -25,22 +24,9 @@ const Ads = () => {
         fetchedAds.push(ad);
       });
       setAds(fetchedAds);
-    }
-    async function fetchUser() {
-      const userRef = db.collection("users");
-      const snapshot = await userRef.where("username", "==", user).get();
-      if (snapshot.empty) {
-        console.log("No matching documents");
-        return;
-      }
-      let userInfo = {};
-      snapshot.forEach((doc) => {
-        userInfo = doc.data();
-      });
-      setProfile(userInfo);
       setLoading(false);
     }
-    Promise.all([fetchData(), fetchUser()]);
+    fetchData();
   }, []);
 
   const handleSubmit = (e) => {
@@ -111,7 +97,6 @@ const Ads = () => {
     }
   };
 
-  const { currentUser } = useContext(AuthContext);
 
   if (loading) {
     return <Loading />;
@@ -149,7 +134,7 @@ const Ads = () => {
             <input type='submit' className='submit-button' />
           </form>
           {ads.map((ad) => {
-            return <AdCard ad={ad} profile={profile} key={ad.title} />;
+            return <AdCard ad={ad} key={ad.title} />;
           })}
         </AdList>
       </>

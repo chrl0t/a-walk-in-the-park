@@ -20,7 +20,7 @@ class MapContainer extends Component {
  
   componentDidMount(){
   console.log(this.state)  
-  this.setState({places: fetchNearestPlacesFromGoogle(this.props.centerLatitude, this.props.centerLongitude)})
+  // this.setState({places: fetchNearestPlacesFromGoogle(this.props.centerLatitude, this.props.centerLongitude)})
 }
 
 
@@ -51,14 +51,14 @@ class MapContainer extends Component {
           }}
           zoom={15}
           onClick={this.onMapClicked}>
-        {this.state.places.map(item => (
+        {/* {this.state.places.map(item => (
             <Marker ref={this.onMarkerMounted}
               key={item.id}
               title={item.name}
               name={item.name}
               position={{ lat: item.lat, lng: item.lng }}
             />
-          ))}
+          ))} */}
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>

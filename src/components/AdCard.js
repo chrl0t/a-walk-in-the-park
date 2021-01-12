@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { AdCardStyled } from "../styles";
 import { db } from "../firebase";
 import { Link } from "@reach/router";
 import { calculateDistance } from "../utils/calculateDistance";
 import Loading from "./Loading";
 import avatar from "../images/avatar.png";
-import { useContext } from "react";
 import { AuthContext } from "../Authentication";
 
 const postcodes = require("node-postcodes.io");
 
 const AdCard = (props) => {
   const { currentUser } = useContext(AuthContext);
+  const [profile, setProfile] = useState(currentUser);
   const [loading, setLoading] = useState(false);
   const [distance, setDistance] = useState(0);
-  const { ad, profile, id } = props;
+  const { ad, id } = props;
 
   useEffect(() => {
     getDistance(profile.postcode, ad.postcode).then((distance) => {
@@ -60,6 +60,8 @@ const AdCard = (props) => {
       });
   };
 
+  console.log(currentUser);
+
   if (loading) {
     return <Loading />;
   } else {
@@ -72,7 +74,7 @@ const AdCard = (props) => {
           </Link>
         </div>
         <div className='ad_info'>
-          {ad.username === currentUser.username ? (
+          {ad.username === profile.username ? (
             <div className='delete-button' onClick={() => deleteAd()}>
               ❌
             </div>
