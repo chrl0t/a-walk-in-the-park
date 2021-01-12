@@ -8,9 +8,8 @@ const LandingPage = () => {
     <LandingPageStyled className='landing'>
       <img className='logo' src={logo} alt='logo' />
       <p>
-        I'm baby truffaut iPhone tofu vegan butcher XOXO. Sustainable cardigan
-        hoodie tumblr pinterest fashion axe. 3 wolf moon pour-over meh pitchfork
-        try-hard ennui.
+        A Walk in the Park is social app where you can find and connect with
+        people wanting to go on a walk!
       </p>
       <Link to='/login'>
         {" "}

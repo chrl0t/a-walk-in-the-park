@@ -8,7 +8,6 @@ import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
 import Login from "./components/Login";
-import Signup from "./components/Signup";
 import { AuthProvider } from "./Authentication";
 import InputUserDetails from "./components/InputUserDetails";
 import Messages from "./components/Messages";
@@ -21,30 +20,29 @@ function App() {
 
   const setLogin = (bool) => {
     if (!bool) {
-      navigate("/")
-      window.location.reload()
+      navigate("/");
+      window.location.reload();
     }
     setLoggedIn(bool);
   };
 
   return (
     <AuthProvider>
-          <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
-          <Router>
-            <InputUserDetails path='/signUpDetails' setLogin={setLogin}/>
-            <LandingPage path='/' />
-            <Login path='/login' setLogin={setLogin} />
-            <Signup path='/signUp' setLogin={setLogin}/>
-            <Ads path='/home' />
-            <PostAd path='/new-ad' />
-            <Profile path='/profile' />
-            <UserPage path='/user/:username' />
-            <Messages path='/messages' />
-            <Inbox path='/inbox' />
-            <Inbox path='/inbox/:username' />
-            <Users path='/users' />
-          </Router>
-          {loggedIn ? <Footer /> : null}
+      <Header setLoggedIn={setLogin} loggedIn={loggedIn} />
+      <Router>
+        <InputUserDetails path='/signUpDetails' setLogin={setLogin} />
+        <LandingPage path='/' />
+        <Login path='/login' setLogin={setLogin} />
+        <Ads path='/home' />
+        <PostAd path='/new-ad' />
+        <Profile path='/profile' setLoggedIn={setLogin} loggedIn={loggedIn} />
+        <UserPage path='/user/:username' />
+        <Messages path='/messages' />
+        <Inbox path='/inbox' />
+        <Inbox path='/inbox/:username' />
+        <Users path='/users' />
+      </Router>
+      {loggedIn ? <Footer /> : null}
     </AuthProvider>
   );
 }
