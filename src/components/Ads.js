@@ -98,21 +98,18 @@ const Ads = () => {
   };
 
   const handleDelete = (adToDelete) => {
-    const filteredAds = ads.filter(ad => {
-      return ad.title !== adToDelete
-    })
+    const filteredAds = ads.filter((ad) => {
+      return ad.title !== adToDelete;
+    });
 
-    setAds(filteredAds)
-  }
-
+    setAds(filteredAds);
+  };
 
   if (loading) {
     return <Loading />;
   } else {
     return (
       <>
-        {currentUser ? <p>Signed in with {currentUser.email}</p> : null}
-
         <AdList>
           <h1>Find a walking buddy:</h1>
           <form onSubmit={(e) => handleSubmit(e)}>
@@ -142,7 +139,9 @@ const Ads = () => {
             <input type='submit' className='submit-button' />
           </form>
           {ads.map((ad) => {
-            return <AdCard ad={ad} key={ad.title} handleDelete={handleDelete} />;
+            return (
+              <AdCard ad={ad} key={ad.title} handleDelete={handleDelete} />
+            );
           })}
         </AdList>
       </>
