@@ -7,10 +7,10 @@ import { AuthContext } from "../Authentication";
 
 const Ads = () => {
   const { currentUser } = useContext(AuthContext);
-  const [profile, setProfile] = useState(currentUser);
+  // const [profile, setProfile] = useState(currentUser);
   const [loading, setLoading] = useState(true);
   const [ads, setAds] = useState([]);
-  const [adId, setAdId] = useState([]);
+  // const [adId, setAdId] = useState([]);
   const [wantsChild, setWantsChild] = useState("");
   const [wantsDog, setWantsDog] = useState("");
 

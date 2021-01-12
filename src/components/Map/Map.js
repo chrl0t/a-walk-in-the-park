@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import './Map.css';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {GoogleApiWrapper} from 'google-maps-react';
 import Key from "../../ignorethisfile";
-import fetchNearestPlacesFromGoogle from '../../utils/fetchParks';
 
 const mapStyles = {
   // position: "relative",
@@ -19,8 +18,42 @@ class MapContainer extends Component {
   };
  
   componentDidMount(){
-  console.log(this.state)  
-  // this.setState({places: fetchNearestPlacesFromGoogle(this.props.centerLatitude, this.props.centerLongitude)})
+    const {google, centerLatitude, centerLongitude} = this.props;
+    const center = new google.maps.LatLng(centerLatitude, centerLongitude);
+    const infowindow = new google.maps.InfoWindow();
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: center,
+      zoom: 15,
+      });
+    const request = {
+      location:center,
+      radius: '2000',
+      type: ['park'],
+      };
+
+    const service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          this.setState({places: results}, () => {
+            this.state.places.forEach(({geometry:{location}}) => {
+              new google.maps.Marker({map, position: location})
+            })
+          })
+          }
+      });
+    
+    
+    function createMarker(place) {
+      const marker = new google.maps.Marker({
+        map,
+        position: place.geometry.location,
+      });
+      google.maps.event.addListener(marker, "click", () => {
+        infowindow.setContent(place.name);
+        infowindow.open(map);
+      });
+    }
+    
 }
 
 
@@ -42,32 +75,7 @@ class MapContainer extends Component {
   
  
   render() {
-    return (<div className="map">
-      <Map google={this.props.google}
-          style={mapStyles}
-          initialCenter={{
-            lat: 40.854885,
-            lng: -88.081807
-          }}
-          zoom={15}
-          onClick={this.onMapClicked}>
-        {/* {this.state.places.map(item => (
-            <Marker ref={this.onMarkerMounted}
-              key={item.id}
-              title={item.name}
-              name={item.name}
-              position={{ lat: item.lat, lng: item.lng }}
-            />
-          ))} */}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
-        </InfoWindow>
-      </Map>
-
+    return (<div id='map' className="map">
     </div>
     )
   }
