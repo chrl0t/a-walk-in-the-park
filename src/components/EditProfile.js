@@ -7,12 +7,15 @@ const EditProfile = (props) => {
   const [username, setUsername] = useState(props.username);
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState(props.bio);
+  const [postcode, setPostcode] = useState(props.userInfo.postcode)
+  console.log(props.userInfo)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("users").doc(props.userInfo.username).update({
       // username: username,
-      bio: bio
+      bio: bio,
+      postcode: postcode
     });
     
     props.updateBio(bio)
@@ -29,7 +32,7 @@ const EditProfile = (props) => {
         ></ProfilePicture>
         {/* <p>Username: </p> <input type="text" value={username} placeholder={props.userInfo.username} onChange={(e) => setUsername(e.target.value)}/> */}
         {/* <p>Password: </p> <input type="text" value={password} placeholder="*****" onChange={(e) => setPassword(e.target.value)}/><br/> */}
-        <h3>Update your Bio: </h3>{" "}
+        <p>Update Bio: </p>{" "}
         <textarea
           type='text'
           value={bio}
@@ -37,7 +40,9 @@ const EditProfile = (props) => {
           onChange={(e) => setBio(e.target.value)}
         />
         <br />
-        <input type="submit"/>
+        <p>Postcode</p>
+        <input type="text" placeholder={props.userInfo.postcode} onChange={(e) => setPostcode(e.target.value)}/>
+        <input type="submit" class="submit-button"/>
       </form>
     </ProfileContainer>
   );
