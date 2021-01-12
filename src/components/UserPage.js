@@ -7,6 +7,7 @@ import { formatDOB, calculateAge } from '../utils/calculateAge'
 import Loading from './Loading';
 import avatar from "../images/avatar.png";
 import * as geolib from 'geolib';
+import ProfileAdCards from './ProfileAdCards'
 const postcodes = require("node-postcodes.io");
 
 
@@ -18,6 +19,8 @@ const UserPage = (props) => {
   const [loading, setLoading] = useState(true);
   const [age, setAge] = useState(0);
   const [center, setCenter] = useState({latitude:0, longitude:0});
+  const [ads, setAds] = useState([])
+
 
   useEffect(() => {
     async function fetchData() {
@@ -41,7 +44,20 @@ const UserPage = (props) => {
       });
       setLoading(false);
     }
+
+    async function fetchAds() {
+      const adsRef = db.collection("ads").where("username", "==", user)
+      const snapshot = await adsRef.get();
+      const fetchedAds = [];
+      snapshot.forEach((doc) => {
+        const ad = doc.data();
+        fetchedAds.push(ad);
+      });
+      setAds(fetchedAds);
+    }
+
     fetchData();
+    fetchAds()
   }, [user]);
 
   async function getGeolocation(postcode) {
@@ -76,6 +92,16 @@ const UserPage = (props) => {
           <div className='fields'>{userProfile.bio}</div>
           <Map centerLatitude={center.latitude} centerLongitude={center.longitude}/>
         </div>
+
+
+        <p>{user}'s ads</p>
+          <ul>
+            {ads.map(ad => {
+              return (
+                <ProfileAdCards ad={ad}/>
+              )
+            })}
+          </ul>
       </ProfileContainer>
     );
   }

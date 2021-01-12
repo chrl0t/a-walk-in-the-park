@@ -332,6 +332,7 @@ export const ProfileContainer = styled.div`
   font-size: 25px;
   padding: 0.5rem;
   padding-top: 0rem;
+  height: auto;
 
   .logout-button {
     color: white;
@@ -442,3 +443,19 @@ export const LoginContainer = styled.div`
   }
 `
 
+export const ProfileAdCardsContainer = styled.div`
+  
+  text-align: left;
+  border-bottom: 1px solid grey;
+  width: 90%;
+  
+  
+  h3 {
+    font-size: 20px;
+    
+  }
+
+  p {
+    font-size: 16px;
+  }
+`
