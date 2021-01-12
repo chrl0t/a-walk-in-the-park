@@ -223,6 +223,10 @@ export const AdCardStyled = styled.li`
     font-size: 0.8rem;
   }
 
+  .delete-button {
+    float: right;
+  }
+
   //Advert pic and username
   .ad_user {
     display: inline-block;

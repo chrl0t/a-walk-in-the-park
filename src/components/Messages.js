@@ -10,7 +10,6 @@ class Messages extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state, "<<<state changed!");
     Talk.ready
       .then(() => {
         const me = new Talk.User(this.state);
@@ -43,7 +42,6 @@ class Messages extends Component {
   }
 
   render() {
-    console.log(this.context);
     return (
       <Fragment>
         <div
