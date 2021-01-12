@@ -7,6 +7,7 @@ import { ProfilePicture, ProfileContainer } from "../styles";
 import { formatDOB, calculateAge } from "../utils/calculateAge";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication";
+import { db } from "../firebase";
 
 const Profile = () => {
 
@@ -16,22 +17,34 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(false);
   const [age, setAge] = useState(0);
+  const [ads, setAds] = useState([])
 
   useEffect(() => {
     const dob = formatDOB(currentUser.dob);
     const age = calculateAge(dob);
+
+    async function fetchData() {
+      const adsRef = db.collection("ads").where("username", "==", currentUser.username)
+      const snapshot = await adsRef.orderBy("created at", "desc").get();
+      const fetchedAds = [];
+      snapshot.forEach((doc) => {
+        const ad = doc.data();
+        fetchedAds.push(ad);
+      });
+      setAds(fetchedAds);
+    }
+    fetchData();
+    console.log(ads)
     setAge(age);
-  });
+  }, []);
 
   const updateBio = (newBio) => {
     setBio(newBio)
   }
 
-  const handleEdit = (e) => {
-    if (e.target.id === "show") setEdit(true);
-    if (e.target.id === "hide") {
-      setEdit(false);
-    }
+  const handleEdit = (bool) => {
+    setEdit(bool)
+
   };
 
   if (loading) {
@@ -60,7 +73,7 @@ const Profile = () => {
           alt='edit'
           width='20px'
           height='20px'
-          onClick={(e) => handleEdit(e)}
+          onClick={() => handleEdit(true)}
           id='show'
         ></img>
         <div className='info'>
@@ -69,6 +82,15 @@ const Profile = () => {
           <div className='fields-gender'>Gender: {profile.gender}</div>
           <div className='fields'>Bio: {bio}</div>
         </div>
+        
+        <h2>My ads: </h2>
+        <ul>
+          {ads.map(ad => {
+            <li>
+              <p>{ad.title}</p>
+            </li>
+          })}
+        </ul>
       </ProfileContainer>
     );
   }

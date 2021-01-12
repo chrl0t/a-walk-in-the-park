@@ -1,7 +1,8 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { Redirect, navigate } from "@reach/router";
-import app, {auth} from "../firebase.js";
-import { AuthContext } from "../Authentication.js";
+import { navigate, Link } from "@reach/router";
+import app from "../firebase.js";
+import { LoginContainer } from '../styles'
+
 
 const Login = (props) => {
     const [error, setError] = useState()
@@ -32,10 +33,8 @@ const Login = (props) => {
 
         }, []
       );
-
-      console.log(auth.currentUser)
         return (
-            <div>
+            <LoginContainer>
                 <h1>Sign In</h1>
                 <form onSubmit={(e) => handleLogin(e)}>
                     <p>Email: </p>
@@ -44,7 +43,8 @@ const Login = (props) => {
                     <input type="password" required id="password"/>
                     <button type="submit">Login</button>
                 </form>
-            </div>
+                <p>Don't have an account? Sign up <Link to="/signUpDetails">here!</Link></p>
+            </LoginContainer>
         );
     // }
 

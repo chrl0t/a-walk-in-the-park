@@ -16,6 +16,7 @@ const EditProfile = (props) => {
     });
     
     props.updateBio(bio)
+    props.handleEdit(false)
   };
   return (
     <ProfileContainer>
@@ -36,16 +37,8 @@ const EditProfile = (props) => {
           onChange={(e) => setBio(e.target.value)}
         />
         <br />
-        <input
-          className='submit-button'
-          type='submit'
-          onSubmit={(e) => props.handleEdit(e)}
-        />
+        <input type="submit"/>
       </form>
-
-      <button id='hide' onClick={(e) => props.handleEdit(e)}>
-        Done
-      </button>
     </ProfileContainer>
   );
 };

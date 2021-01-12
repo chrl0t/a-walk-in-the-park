@@ -8,7 +8,6 @@ import PostAd from "./components/PostAd";
 import Profile from "./components/Profile";
 import UserPage from "./components/UserPage";
 import Login from "./components/Login";
-import Signup from "./components/Signup";
 import { AuthProvider } from "./Authentication";
 import InputUserDetails from "./components/InputUserDetails";
 import Messages from "./components/Messages";
@@ -34,7 +33,6 @@ function App() {
             <InputUserDetails path='/signUpDetails' setLogin={setLogin}/>
             <LandingPage path='/' />
             <Login path='/login' setLogin={setLogin} />
-            <Signup path='/signUp' setLogin={setLogin}/>
             <Ads path='/home' />
             <PostAd path='/new-ad' />
             <Profile path='/profile' />

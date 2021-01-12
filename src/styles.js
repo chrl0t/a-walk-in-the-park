@@ -372,3 +372,39 @@ export const ProfileContainer = styled.div`
 export const ProfilePicture = styled.img`
   border-radius: 50%;
 `;
+
+
+// LOGIN STYLES
+
+
+export const LoginContainer = styled.div`
+  height: auto;
+  text-align: left;
+  padding-left: 50px;
+
+  h1 {
+    color: #00887a;
+  }
+
+  input {
+    width: 80%;
+    height: 30px;
+    border: none;
+    background-color: white;
+    border-bottom: 2px solid #00887a;
+  }
+
+  button {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #00887a;
+    font-family: "Catamaran", sans-serif;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    width: 80%;
+    margin-top: 30px;
+    text-align: center;
+  }
+`
+
