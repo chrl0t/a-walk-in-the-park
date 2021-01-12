@@ -3,8 +3,9 @@ import {AuthContext} from '../Authentication'
 import { navigate } from "@reach/router";
 import {db, auth} from "../firebase";
 
+
 const InputUserDetails = (props) => {
-    const { currentUser } = useContext(AuthContext)
+    const context  = useContext(AuthContext)
     const [email, setEmail] = useState()
     const [name, setName] = useState()
     const [username, setUsername] = useState()
@@ -22,7 +23,7 @@ const InputUserDetails = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const adRef = db.collection("users").doc(username).set({
+        db.collection("users").doc(username).set({
             email: email,
             username: username,
             gender: gender,
@@ -30,14 +31,23 @@ const InputUserDetails = (props) => {
             bio: bio,
             dob: dob,
             id: username
-          });
+        });
 
+        context.setCurrentUser({
+            email: email,
+            username: username,
+            gender: gender,
+            postcode: postcode,
+            bio: bio,
+            dob: dob,
+            id: username
+        })
         props.setLogin(true)
+        navigate("/home")
     }
 
     return (
         <div>
-            {currentUser ? <p>{currentUser.email}</p> : null}
             <form onSubmit={(e) => handleSubmit(e)}>
                 <p>Username:</p>
                 <input type="text" required onChange={(e) => setUsername(e.target.value)}/>

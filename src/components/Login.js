@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { Redirect, navigate } from "@reach/router";
-import app from "../firebase.js";
+import app, {auth} from "../firebase.js";
 import { AuthContext } from "../Authentication.js";
 
 const Login = (props) => {
@@ -10,6 +10,7 @@ const Login = (props) => {
       console.log("in handle post login")
       if (!error) {
         props.setLogin(true)
+        navigate("/home")
       }
     }
 
@@ -32,12 +33,7 @@ const Login = (props) => {
         }, []
       );
 
-    const { currentUser } = useContext(AuthContext);
-    console.log(currentUser, "<<< in login")
-   
-    // if (currentUser) {
-    //     return <Redirect to="/" />
-    // } else {
+      console.log(auth.currentUser)
         return (
             <div>
                 <h1>Sign In</h1>
