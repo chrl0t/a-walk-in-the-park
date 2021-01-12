@@ -6,22 +6,21 @@ import { calculateDistance } from "../utils/calculateDistance";
 import Loading from "./Loading";
 import avatar from "../images/avatar.png";
 import { AuthContext } from "../Authentication";
-
 const postcodes = require("node-postcodes.io");
 
 const AdCard = (props) => {
   const { currentUser } = useContext(AuthContext);
-  const [profile, setProfile] = useState(currentUser);
+  const [profile] = useState(currentUser);
   const [loading, setLoading] = useState(false);
   const [distance, setDistance] = useState(0);
-  const { ad, id } = props;
+  const { ad } = props;
 
   useEffect(() => {
     getDistance(profile.postcode, ad.postcode).then((distance) => {
       setDistance(distance);
       setLoading(false);
     });
-  }, []);
+  });
 
   async function getGeolocation(postcode) {
     const result = await postcodes.lookup(postcode).then((res) => {
@@ -30,16 +29,16 @@ const AdCard = (props) => {
     return result;
   }
 
-  async function getDistance(profilePostcode, adPostcode) {
-    if (adPostcode && profilePostcode) {
+  async function getDistance(profilePostcode, userPostcode) {
+    if (profilePostcode && userPostcode) {
       let pp = await getGeolocation(profilePostcode);
-      let ap = await getGeolocation(adPostcode);
+      let up = await getGeolocation(userPostcode);
 
       return calculateDistance(
         pp.latitude,
         pp.longitude,
-        ap.latitude,
-        ap.longitude
+        up.latitude,
+        up.longitude
       );
     }
   }
@@ -58,8 +57,7 @@ const AdCard = (props) => {
       .catch((err) => {
         console.log("Error getting documents", err);
       });
-
-    props.handleDelete(ad.title);
+    props.handleDelete(ad.title)
   };
 
   if (loading) {
