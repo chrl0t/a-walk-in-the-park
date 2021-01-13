@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from "../Authentication";
-import {db} from '../firebase'
+import {db, storage} from '../firebase'
 import { ProfilePicture, ProfileContainer } from '../styles'
 import Map from './Map/Map';
 import { formatDOB, calculateAge } from '../utils/calculateAge'
@@ -21,6 +21,7 @@ const UserPage = (props) => {
   const [userDistrict, setUserDistrict] = useState('');
   const [center, setCenter] = useState({latitude:0, longitude:0});
   const [ads, setAds] = useState([])
+  const [image, setImage] = useState()
 
 
   useEffect(() => {
@@ -56,6 +57,15 @@ const UserPage = (props) => {
       setAds(fetchedAds);
     }
 
+    const username = user
+    storage  
+      .ref(`${username}.jpg`)
+      .getDownloadURL()
+      .then(url => {
+        console.log(url)
+        setImage(url)
+      });
+
     fetchData();
     fetchAds()
   }, [user]);
@@ -85,7 +95,7 @@ const UserPage = (props) => {
     return (
       <ProfileContainer>
         <h2>{userProfile.username}</h2>
-        <ProfilePicture src={avatar} width='100px'></ProfilePicture>
+        <ProfilePicture src={image} width='100px'></ProfilePicture>
         <div className='info'>
           <div className='fields'>📍{userDistrict}</div>
           <div className='fields'>{userProfile.name}</div>

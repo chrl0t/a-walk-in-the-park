@@ -247,8 +247,9 @@ export const AdCardStyled = styled.li`
     width: 25%;
 
     img {
-      height: 60px;
-      width: auto;
+      height:100px;
+      width: 100px;
+      border-radius: 50%;
       margin: auto;
       border: solid 1px lightgrey;
     }
