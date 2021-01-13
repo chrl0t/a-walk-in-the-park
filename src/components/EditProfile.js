@@ -37,7 +37,7 @@ const EditProfile = (props) => {
           onChange={(e) => setBio(e.target.value)}
         />
         <br />
-        <h3 className='postcode-title'>Postcode</h3>
+        <h3 className='postcode-title'>Update Postcode:</h3>
         <input
           type='text'
           placeholder={props.userInfo.postcode}

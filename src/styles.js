@@ -412,6 +412,13 @@ export const ProfileContainer = styled.div`
     border-color: #00887a;
   }
 
+  input {
+    font-family: "Open Sans", sans-serif;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
+    border-color: #00887a;
+  }
+
   .postcode {
     padding: 0;
     margin: 0;
@@ -465,9 +472,8 @@ export const LoginContainer = styled.div`
   .hide {
     visibility: hidden;
     font-size: 0px;
-
   }
-`
+`;
 
 export const ProfileAdCardsContainer = styled.div`
   text-align: left;
@@ -481,5 +487,4 @@ export const ProfileAdCardsContainer = styled.div`
   p {
     font-size: 16px;
   }
-
-`
+`;
