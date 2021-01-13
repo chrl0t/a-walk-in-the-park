@@ -1,7 +1,6 @@
 import React from "react";
 import Talk from "talkjs";
 import { AuthContext } from "../Authentication";
-import { dummyUsers } from "./DummyUsers";
 import { fetchUsers } from "../utils/fetchUsers";
 
 class Inbox extends React.Component {
@@ -26,29 +25,22 @@ class Inbox extends React.Component {
       const user = res.find((user) => user.id === this.props.username);
       Talk.ready
         .then(() => {
-          /* Create the two users that will participate in the conversation */
           const me = new Talk.User(userInfo);
           const other = new Talk.User(user);
 
-          /* Create a talk session if this does not exist. Remember to replace tthe APP ID with the one on your dashboard */
-          // if (!window.talkSession) {
           window.talkSession = new Talk.Session({
             appId: "tP8HPC7p",
             me: me
           });
-          // }
 
-          /* Get a conversation ID or create one */
           const conversationId = Talk.oneOnOneId(me, other);
           const conversation = window.talkSession.getOrCreateConversation(
             conversationId
           );
 
-          /* Set participants of the conversations */
           conversation.setParticipant(me);
           conversation.setParticipant(other);
 
-          /* Create and mount chatbox in container */
           this.chatbox = window.talkSession.createChatbox(conversation);
           this.chatbox.mount(this.container);
         })
