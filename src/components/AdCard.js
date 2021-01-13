@@ -14,7 +14,7 @@ const AdCard = (props) => {
   const [profile] = useState(currentUser);
   const [loading, setLoading] = useState(false);
   const [distance, setDistance] = useState(0);
-  const [image, setImage] = useState()
+  const [image, setImage] = useState();
   const { ad } = props;
 
   useEffect(() => {
@@ -23,19 +23,18 @@ const AdCard = (props) => {
       setLoading(false);
     });
 
-  
-    const username = ad.username
-    
-    storage  
-      .ref(`${username}.jpg` )
+    const username = ad.username;
+
+    storage
+      .ref(`${username}.jpg`)
       .getDownloadURL()
-      .then( url => {
-        setImage(url)
-      }).catch(err=> {
-        setImage(null)
+      .then((url) => {
+        setImage(url);
       })
-  })
-  
+      .catch((err) => {
+        setImage(null);
+      });
+  });
 
   async function getGeolocation(postcode) {
     const result = await postcodes.lookup(postcode).then((res) => {
@@ -48,8 +47,6 @@ const AdCard = (props) => {
     if (profilePostcode && userPostcode) {
       let pp = await getGeolocation(profilePostcode);
       let up = await getGeolocation(userPostcode);
-      console.log(pp, '------------ pp');
-      console.log(up, '--------------- up');
 
       return calculateDistance(
         pp.latitude,
@@ -83,7 +80,11 @@ const AdCard = (props) => {
       <AdCardStyled>
         <div className='ad_user'>
           <Link className='username' to={`/user/${ad.username}`}>
-            {image ? <img src={image} alt="profile pic"/> : <img src={avatar} alt='user profile pic' />}
+            {image ? (
+              <img src={image} alt='profile pic' />
+            ) : (
+              <img src={avatar} alt='user profile pic' />
+            )}
             <p>{ad.username}</p>{" "}
           </Link>
         </div>

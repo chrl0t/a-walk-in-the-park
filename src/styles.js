@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const HeaderStyled = styled.div`
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   text-decoration: none;
   width: 100%;
   height: 4.5rem;
@@ -10,11 +10,11 @@ export const HeaderStyled = styled.div`
   text-align: center;
   text-decoration: none;
   font-size: 2.8rem;
-  background-color: #2BAE66FF;
+  background-color: #2bae66ff;
 
   .header-title {
     text-decoration: none;
-    color: black;
+    color: #fcf6f5ff;
   }
 `;
 
@@ -23,13 +23,16 @@ export const FooterStyled = styled.div`
   bottom: 0;
   width: 100%;
   height: 12%;
-  background-color: #2Bae66ff;
+  background-color: #2bae66ff;
   padding: auto;
   margin: auto;
 
   // FOOTER BUTTONS
   .buttons-container {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 10px;
   }
 
   .home-button,
@@ -37,48 +40,31 @@ export const FooterStyled = styled.div`
   .user-button,
   .message-button,
   .map-button {
-    display: block;
-    position: absolute;
-    top: auto;
     margin-top: 1rem;
   }
 
   .home-button {
     height: 2.8rem;
     width: 3rem;
-    left: 0%;
-    padding-left: 0.8rem;
-    margin-top: 1.1rem;
   }
 
   .add-button {
     height: 2.5rem;
-    right: 47%;
-    margin-top: 1.2rem;
   }
 
   .user-button {
     height: 3.1rem;
     width: 3.2rem;
-    right: 0%;
-    padding-right: 0.8rem;
-    margin-top: 0.9rem;
   }
 
   .message-button {
     height: 3.3rem;
     width: 2.7rem;
-    margin-top: 0.8rem;
-    position: flex;
-    margin-left: 6.2rem;
   }
 
   .map-button {
     height: 3rem;
     width: 3rem;
-    margin-left: 16.3rem;
-    margin-top: 1.1rem;
-    position: flex;
   }
 `;
 
@@ -93,7 +79,7 @@ export const AdForm = styled.div`
     color: white;
     text-transform: uppercase;
     text-decoration: none;
-    background: #2Bae66ff;
+    background: #2bae66ff;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
     border-radius: 0.4rem;
@@ -105,7 +91,7 @@ export const AdForm = styled.div`
 
   h2 {
     font-family: "Open Sans", sans-serif;
-    color: #2Bae66ff;
+    color: #2bae66ff;
     font-weight: bold;
     font-size: 1.3rem;
     margin: 0.8rem;
@@ -117,7 +103,7 @@ export const AdForm = styled.div`
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
-    border-color: #2Bae66ff;
+    border-color: #2bae66ff;
     text-transform: uppercase;
   }
 
@@ -127,11 +113,11 @@ export const AdForm = styled.div`
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
-    border-color: #2Bae66ff;
+    border-color: #2bae66ff;
   }
 
   .question {
-    color: #2Bae66ff;
+    color: #2bae66ff;
   }
 
   .check-box {
@@ -144,7 +130,7 @@ export const AdForm = styled.div`
     width: 5rem;
     padding: 0;
     margin: 0;
-    border-color: #2Bae66ff;
+    border-color: #2bae66ff;
   }
 `;
 
@@ -157,14 +143,14 @@ export const LandingPageStyled = styled.div`
 
   p {
     font-family: "Open Sans", sans-serif;
-    color: #2Bae66ff;
+    color: #2bae66ff;
   }
 
   button {
     color: white;
     text-transform: uppercase;
     text-decoration: none;
-    background: #2Bae66ff;
+    background: #2bae66ff;
     font-family: "Catamaran", sans-serif;
     font-weight: bold;
     border-radius: 0.4rem;
@@ -193,7 +179,7 @@ export const AdList = styled.ul`
     color: black;
     text-transform: uppercase;
     text-decoration: none;
-    background: #2Bae66ff;
+    background: #2bae66ff;
     font-family: "Catamaran", sans-serif;
     font-size: 0.8rem;
     border-radius: 0.4rem;
@@ -207,7 +193,7 @@ export const AdList = styled.ul`
   .select-box {
     background-color: white;
     font-family: "Catamaran", sans-serif;
-    border-color: #2Bae66ff;
+    border-color: #2bae66ff;
     padding: 0px;
     margin-bottom: 0px;
   }
@@ -230,7 +216,7 @@ export const AdCardStyled = styled.li`
 
   .username {
     text-decoration: none;
-    color: #2Bae66ff;
+    color: #2bae66ff;
     font-family: "Open Sans", sans-serif;
     font-size: 0.8rem;
   }
@@ -247,7 +233,7 @@ export const AdCardStyled = styled.li`
     width: 25%;
 
     img {
-      height:100px;
+      height: 100px;
       width: 100px;
       border-radius: 50%;
       margin: auto;
@@ -279,7 +265,7 @@ export const AdCardStyled = styled.li`
   .distance {
     font-size: 0.73rem;
     font-weight: bold;
-    color: #2Bae66ff;
+    color: #2bae66ff;
   }
 
   //Advert title and description
@@ -309,7 +295,7 @@ export const AdCardStyled = styled.li`
     margin: 0 0 12px 0;
     font-family: Helvetica, sans-serif;
     font-weight: bold;
-    color: #2Bae66ff;
+    color: #2bae66ff;
     font-size: 0.73rem;
   }
 
@@ -347,7 +333,7 @@ export const ProfileContainer = styled.div`
     color: white;
     text-transform: uppercase;
     text-decoration: none;
-    background: #2Bae66ff;
+    background: #2bae66ff;
     font-family: "Catamaran", sans-serif;
     font-size: 0.8rem;
     border-radius: 0.4rem;
@@ -367,12 +353,12 @@ export const ProfileContainer = styled.div`
   }
 
   h2 {
-    color: #2Bae66ff;
+    color: #2bae66ff;
     margin-bottom: 0.5rem;
   }
 
   h3 {
-    color: #2Bae66ff;
+    color: #2bae66ff;
     margin-bottom: 0.8rem;
   }
 
@@ -394,7 +380,7 @@ export const ProfileContainer = styled.div`
     color: white;
     text-transform: uppercase;
     text-decoration: none;
-    background: #2Bae66ff;
+    background: #2bae66ff;
     font-family: "Catamaran", sans-serif;
     font-weight: bold;
     border-radius: 0.4rem;
@@ -410,14 +396,14 @@ export const ProfileContainer = styled.div`
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
-    border-color: #2Bae66ff;
+    border-color: #2bae66ff;
   }
 
   input {
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
-    border-color: #2Bae66ff;
+    border-color: #2bae66ff;
   }
 
   .postcode {
@@ -442,7 +428,7 @@ export const LoginContainer = styled.div`
   padding-left: 50px;
 
   h1 {
-    color: #2Bae66ff;
+    color: #2bae66ff;
   }
 
   input {
@@ -450,14 +436,14 @@ export const LoginContainer = styled.div`
     height: 30px;
     border: none;
     background-color: white;
-    border-bottom: 2px solid #2Bae66ff;
+    border-bottom: 2px solid #2bae66ff;
   }
 
   button {
     color: white;
     text-transform: uppercase;
     text-decoration: none;
-    background: #2Bae66ff;
+    background: #2bae66ff;
     font-family: "Catamaran", sans-serif;
     font-weight: bold;
     border-radius: 0.4rem;
