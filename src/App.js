@@ -14,6 +14,7 @@ import Messages from "./components/Messages";
 import Inbox from "./components/Inbox";
 import React, { useState } from "react";
 import Users from "./components/Users";
+import ProfileMap from './components/ProfileMap';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -36,6 +37,7 @@ function App() {
         <Ads path='/home' />
         <PostAd path='/new-ad' />
         <Profile path='/profile' setLoggedIn={setLogin} loggedIn={loggedIn} />
+        <ProfileMap path='/map' />
         <UserPage path='/user/:username' />
         <Messages path='/messages' />
         <Inbox path='/inbox' />

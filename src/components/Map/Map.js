@@ -20,10 +20,9 @@ class MapContainer extends Component {
   componentDidMount(){
     const {google, centerLatitude, centerLongitude} = this.props;
     const center = new google.maps.LatLng(centerLatitude, centerLongitude);
-    const infowindow = new google.maps.InfoWindow();
     const map = new google.maps.Map(document.getElementById("map"), {
       center: center,
-      zoom: 15,
+      zoom: 13,
       });
     const request = {
       location:center,
@@ -35,49 +34,36 @@ class MapContainer extends Component {
       service.nearbySearch(request, (results, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           this.setState({places: results}, () => {
-            this.state.places.forEach(({geometry:{location}}) => {
-              new google.maps.Marker({map, position: location})
+            this.state.places.forEach((place) => {
+              createMarker(place)
             })
           })
           }
       });
     
-    
     function createMarker(place) {
-      const marker = new google.maps.Marker({
-        map,
-        position: place.geometry.location,
+      const infowindow = new google.maps.InfoWindow({
+        content: (
+          `<h2>${place.name}</h2>` +
+          `<p>Rating: ${place.rating ? place.rating : 'no ratings'}</p>` +
+          `<a target="_blank" href='http://www.google.com/search?q=${place.name}'>Search Google</a>`
+          )
       });
-      google.maps.event.addListener(marker, "click", () => {
-        infowindow.setContent(place.name);
-        infowindow.open(map);
-      });
-    }
     
-}
-
-
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
- 
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-      })
+      const marker = new google.maps.Marker({
+        position: place.geometry.location,
+        map,
+        title: "Marker",
+      });
+      marker.addListener("click", () => {
+        infowindow.open(map, marker);
+      });
     }
-  };
-  
+}
  
   render() {
     return (<div id='map' className="map">
-    </div>
-    )
+    </div>)
   }
 }
 

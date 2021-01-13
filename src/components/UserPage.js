@@ -18,6 +18,7 @@ const UserPage = (props) => {
   const [userProfile, setUserProfile] = useState()
   const [loading, setLoading] = useState(true);
   const [age, setAge] = useState(0);
+  const [userDistrict, setUserDistrict] = useState('');
   const [center, setCenter] = useState({latitude:0, longitude:0});
   const [ads, setAds] = useState([])
 
@@ -39,7 +40,6 @@ const UserPage = (props) => {
       const age = calculateAge(dob);
       setAge(age);
       await getCenterLatLng(profile.postcode, userInfo.postcode).then((res) => {
-        console.log(res);
         setCenter({latitude: res.latitude, longitude:res.longitude});
       });
       setLoading(false);
@@ -71,6 +71,7 @@ const UserPage = (props) => {
     if (profilePostcode && userPostcode) {
       let pp = await getGeolocation(profilePostcode);
       let up = await getGeolocation(userPostcode);
+      setUserDistrict(up.admin_district);
       return geolib.getCenter([
         { latitude: pp.latitude, longitude: pp.longitude },
         { latitude: up.latitude, longitude: up.longitude },
@@ -86,7 +87,8 @@ const UserPage = (props) => {
         <h2>{userProfile.username}</h2>
         <ProfilePicture src={avatar} width='100px'></ProfilePicture>
         <div className='info'>
-          <div className='fields'>Name: {userProfile.name}</div>
+          <div className='fields'>📍{userDistrict}</div>
+          <div className='fields'>{userProfile.name}</div>
           <div className='fields'>Age: {age}</div>
           <div className='fields-gender'>Gender: {userProfile.gender}</div>
           <div className='fields'>{userProfile.bio}</div>

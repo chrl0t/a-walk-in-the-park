@@ -7,11 +7,14 @@ import { ProfilePicture, ProfileContainer } from "../styles";
 import { formatDOB, calculateAge } from "../utils/calculateAge";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication";
-import ProfileAdCards from './ProfileAdCards'
+import ProfileAdCards from './ProfileAdCards';
+
 
 import { db } from "../firebase";
 
 import app from "../firebase";
+const postcodes = require("node-postcodes.io");
+
 
 
 const Profile = (props) => {
@@ -20,6 +23,7 @@ const Profile = (props) => {
   const [bio, setBio] = useState(currentUser.bio);
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [profileDistrict, setProfileDistrict] = useState('');
   const [age, setAge] = useState(0);
   const [ads, setAds] = useState([])
   const [err, setErr] = useState()
@@ -29,7 +33,7 @@ const Profile = (props) => {
     const age = calculateAge(dob);
 
     async function fetchData() {
-      console.log(currentUser.username)
+      // console.log(currentUser.username)
       const adsRef = db.collection("ads").where("username", "==", currentUser.username)
       const snapshot = await adsRef.get();
       const fetchedAds = [];
@@ -37,8 +41,11 @@ const Profile = (props) => {
         const ad = doc.data();
         fetchedAds.push(ad);
       });
-      console.log(fetchedAds)
       setAds(fetchedAds);
+      await getLatLng(profile.postcode).then((res) => {
+        console.log(res);
+        setProfileDistrict(res.admin_district);
+      });
     }
     fetchData();
     console.log(ads, "<<<<<")
@@ -75,6 +82,20 @@ const Profile = (props) => {
     }
   });
 
+  async function getGeolocation(postcode) {
+    const result = await postcodes.lookup(postcode).then((res) => {
+      return res.result;
+    });
+    return result;
+  }
+
+  async function getLatLng(profilePostcode) {
+    if (profilePostcode) {
+      let pp = await getGeolocation(profilePostcode);
+      return pp;
+    }
+  }
+
   if (loading) {
     return <Loading />;
   } else if (edit) {
@@ -109,10 +130,11 @@ const Profile = (props) => {
             id='show'
           ></img>
           <div className='info'>
-            <div className='fields'>Name: {profile.name}</div>
-            <div className='fields'>Age: {age}</div>
-            <div className='fields-gender'>Gender: {profile.gender}</div>
-            <div className='fields'>Bio: {bio}</div>
+            <div className='fields'>{profileDistrict}</div>
+            <div className='fields'>{profile.name}</div>
+            <div className='fields'>{age}</div>
+            <div className='fields-gender'>{profile.gender}</div>
+            <div className='fields'>{bio}</div>
           </div>
 
           <p>My ads</p>

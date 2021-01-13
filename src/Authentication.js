@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
    useEffect(() => {
       app.auth().onAuthStateChanged((user) => {
-        console.log(user, "user in auth")
+        // console.log(user, "user in auth")
 
         async function fetchData() {
           const userRef = db.collection("users");
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
             snapshot.forEach((doc) => {
               userInfo = doc.data();
             });
-            console.log(userInfo)
+            // console.log(userInfo)
             setCurrentUser(userInfo);
           
         }

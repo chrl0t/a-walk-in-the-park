@@ -20,8 +20,14 @@ const Footer = () => {
         <Link to='/new-ad'>
           <img className='add-button' src={add} alt='add-button' />
         </Link>
-        <Link to='/home'>
-          <img className='map-button' src={map} alt='map-button' />
+
+        <Link to='/map'>
+          <img
+            className='map-button'
+            src={map}
+            alt='map-button'
+          />
+
         </Link>
         <Link to='/profile'>
           <img className='user-button' src={user} alt='user-button' />
