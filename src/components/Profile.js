@@ -10,7 +10,8 @@ import { AuthContext } from "../Authentication";
 import ProfileAdCards from './ProfileAdCards';
 
 
-import { db } from "../firebase";
+
+import { db, storage } from "../firebase";
 
 import app from "../firebase";
 const postcodes = require("node-postcodes.io");
@@ -27,6 +28,7 @@ const Profile = (props) => {
   const [age, setAge] = useState(0);
   const [ads, setAds] = useState([])
   const [err, setErr] = useState()
+  const [image, setImage] = useState()
 
   useEffect(() => {
     const dob = formatDOB(currentUser.dob);
@@ -48,7 +50,15 @@ const Profile = (props) => {
       });
     }
     fetchData();
-    console.log(ads, "<<<<<")
+    
+    const username = profile.username
+    storage  
+      .ref( `${username}.jpg` )
+      .getDownloadURL()
+      .then( url => {
+        setImage(url)
+      });
+
     setAge(age);
   }, []);
 
@@ -117,7 +127,7 @@ const Profile = (props) => {
           </button>
           <h2>{profile.username}</h2>
           <ProfilePicture
-            src={profilepic}
+            src={image}
             width='100px'
             height='100px'
           ></ProfilePicture>
