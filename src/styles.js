@@ -36,7 +36,7 @@ export const FooterStyled = styled.div`
   .add-button,
   .user-button,
   .message-button,
-  .favourite-button {
+  .map-button {
     display: block;
     position: absolute;
     top: auto;
@@ -73,9 +73,9 @@ export const FooterStyled = styled.div`
     margin-left: 6.2rem;
   }
 
-  .favourite-button {
-    height: 2.8rem;
-    width: 2.8rem;
+  .map-button {
+    height: 3rem;
+    width: 3rem;
     margin-left: 16.3rem;
     margin-top: 1.1rem;
     position: flex;
@@ -301,7 +301,15 @@ export const AdCardStyled = styled.li`
     font-family: "Catamaran", sans-serif;
     line-height: 1.5rem;
     font-size: 1.2rem;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    margin: 0 0 12px 0;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    color: #00887a;
+    font-size: 0.73rem;
   }
 
   .ad_info span {
@@ -396,21 +404,29 @@ export const ProfileContainer = styled.div`
   }
 
   textarea {
-    width: 20rem;
-    height: 8rem;
+    width: 18rem;
+    height: 6rem;
     font-family: "Open Sans", sans-serif;
     border-radius: 0.4rem;
     border-width: 0.2rem;
     border-color: #00887a;
+  }
+
+  .postcode {
+    padding: 0;
+    margin: 0;
+  }
+
+  .postcode-title {
+    padding: 0;
+    margin: 0;
   }
 `;
 export const ProfilePicture = styled.img`
   border-radius: 50%;
 `;
 
-
 // LOGIN STYLES
-
 
 export const LoginContainer = styled.div`
   height: auto;
@@ -454,15 +470,12 @@ export const LoginContainer = styled.div`
 `
 
 export const ProfileAdCardsContainer = styled.div`
-  
   text-align: left;
   border-bottom: 1px solid grey;
   width: 90%;
-  
-  
+
   h3 {
     font-size: 20px;
-    
   }
 
   p {

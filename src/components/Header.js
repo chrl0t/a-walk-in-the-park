@@ -1,32 +1,8 @@
-import React, { useCallback, useState } from "react";
-import { Link, navigate } from "@reach/router";
+import React from "react";
+import { Link } from "@reach/router";
 import { HeaderStyled } from "../styles";
-import app from "../firebase";
 
 const Header = (props) => {
-  // const [err, setErr] = useState();
-
-  // const handlePostLogout = () => {
-  //   console.log("in handle post login");
-  //   if (!err) {
-  //     props.setLoggedIn(false);
-  //   }
-  // };
-
-  // const handleLogout = useCallback(async (e) => {
-  //   try {
-  //     await app
-  //       .auth()
-  //       .signOut()
-  //       .then(() => {
-  //         handlePostLogout();
-  //       });
-  //   } catch (error) {
-  //     setErr(err);
-  //     alert(err);
-  //   }
-  // });
-
   return (
     <>
       <HeaderStyled className='header'>
@@ -40,7 +16,6 @@ const Header = (props) => {
           </Link>
         )}
       </HeaderStyled>
-      {/* {props.loggedIn ? <p onClick={handleLogout}>Sign out</p> : null} */}
     </>
   );
 };
