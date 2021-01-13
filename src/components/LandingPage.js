@@ -2,11 +2,14 @@ import React from "react";
 import logo from "../images/logo.png";
 import { LandingPageStyled } from "../styles";
 import { Link } from "@reach/router";
+import Loading from './Loading';
 
 const LandingPage = () => {
   return (
     <LandingPageStyled className='landing'>
-      <img className='logo' src={logo} alt='logo' />
+      <div>
+      <Loading />
+      </div>
       <p>
         A Walk in the Park is social app where you can find and connect with
         people wanting to go on a walk!
