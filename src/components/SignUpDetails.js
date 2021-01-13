@@ -2,7 +2,6 @@ import React from 'react';
 import { LoginContainer } from '../styles';
 
 const SignUpDetails = (props) => {
-
     return (
         <LoginContainer>
             <h1>Sign Up</h1>
