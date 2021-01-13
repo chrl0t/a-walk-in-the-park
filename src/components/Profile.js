@@ -53,9 +53,10 @@ const Profile = (props) => {
     
     const username = profile.username
     storage  
-      .ref( `${username}.jpg` )
+      .ref(`${username}.jpg`)
       .getDownloadURL()
-      .then( url => {
+      .then(url => {
+        console.log(url)
         setImage(url)
       });
 
