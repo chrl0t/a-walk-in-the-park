@@ -457,7 +457,17 @@ export const LoginContainer = styled.div`
     margin-top: 30px;
     text-align: center;
   }
-`;
+
+  .show {
+    font-size: 12px;
+  }
+
+  .hide {
+    visibility: hidden;
+    font-size: 0px;
+
+  }
+`
 
 export const ProfileAdCardsContainer = styled.div`
   text-align: left;
@@ -471,4 +481,5 @@ export const ProfileAdCardsContainer = styled.div`
   p {
     font-size: 16px;
   }
-`;
+
+`
