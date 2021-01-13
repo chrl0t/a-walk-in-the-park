@@ -6,6 +6,7 @@ import { calculateDistance } from "../utils/calculateDistance";
 import Loading from "./Loading";
 import avatar from "../images/avatar.png";
 import { AuthContext } from "../Authentication";
+const moment = require("moment");
 const postcodes = require("node-postcodes.io");
 
 const AdCard = (props) => {
@@ -44,14 +45,13 @@ const AdCard = (props) => {
   }
 
   const deleteAd = () => {
-    let adToDelete = db
-      .collection("ads")
+    db.collection("ads")
       .where("title", "==", ad.title)
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           console.log(doc.id, "=>", doc.data());
-          let deletedDoc = db.collection("ads").doc(doc.id).delete();
+          db.collection("ads").doc(doc.id).delete();
         });
       })
       .catch((err) => {
@@ -63,10 +63,6 @@ const AdCard = (props) => {
   if (loading) {
     return <Loading />;
   } else {
-    // console.log(ad.created_at.seconds);
-    // let date = new Date();
-    // date.setSeconds(ad.created_at.seconds);
-    // console.log(date);
     return (
       <AdCardStyled>
         <div className='ad_user'>
@@ -81,9 +77,10 @@ const AdCard = (props) => {
               ❌
             </div>
           ) : null}
-          <h2>
-            {ad.title} {ad.created_at.seconds}
-          </h2>
+          <h2>{ad.title}</h2>
+          <h3>
+            {moment.unix(ad.created_at.seconds).startOf("hour").fromNow()}
+          </h3>
           <span>{ad.description}</span>
           <br></br>
           <Link to={`/inbox/${ad.username}`}>
@@ -91,11 +88,13 @@ const AdCard = (props) => {
             <button className='emoji'>✉️</button>
           </Link>
           <button className='emoji'>❤️</button>
-          {distance > 1 ? (
-            <button className='distance'>{distance} miles away</button>
-          ) : (
-            <button className='distance'>Under a mile away</button>
-          )}
+          {ad.username !== profile.username ? (
+            distance > 1 ? (
+              <button className='distance'>{distance} miles away</button>
+            ) : (
+              <button className='distance'>Under a mile away</button>
+            )
+          ) : null}
         </div>
       </AdCardStyled>
     );

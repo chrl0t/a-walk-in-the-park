@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import Talk from "talkjs";
-import firebase from "firebase/app";
 import { AuthContext } from "../Authentication";
 
 class Messages extends Component {

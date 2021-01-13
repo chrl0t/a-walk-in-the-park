@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import { ProfileContainer, ProfilePicture } from "../styles";
 import { db } from "../firebase";
-import { navigate } from "@reach/router";
 
 const EditProfile = (props) => {
   const [username, setUsername] = useState(props.username);
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState(props.bio);
-  const [postcode, setPostcode] = useState(props.userInfo.postcode)
-  console.log(props.userInfo)
+  const [postcode, setPostcode] = useState(props.userInfo.postcode);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("users").doc(props.userInfo.username).update({
-      // username: username,
       bio: bio,
       postcode: postcode
     });
-    
-    props.updateBio(bio)
-    props.handleEdit(false)
+
+    props.updateBio(bio);
+    props.handleEdit(false);
   };
   return (
     <ProfileContainer>
@@ -32,7 +29,7 @@ const EditProfile = (props) => {
         ></ProfilePicture>
         {/* <p>Username: </p> <input type="text" value={username} placeholder={props.userInfo.username} onChange={(e) => setUsername(e.target.value)}/> */}
         {/* <p>Password: </p> <input type="text" value={password} placeholder="*****" onChange={(e) => setPassword(e.target.value)}/><br/> */}
-        <p>Update Bio: </p>{" "}
+        <h3>Update Bio: </h3>{" "}
         <textarea
           type='text'
           value={bio}
@@ -40,9 +37,15 @@ const EditProfile = (props) => {
           onChange={(e) => setBio(e.target.value)}
         />
         <br />
-        <p>Postcode</p>
-        <input type="text" placeholder={props.userInfo.postcode} onChange={(e) => setPostcode(e.target.value)}/>
-        <input type="submit" class="submit-button"/>
+        <h3 className='postcode-title'>Postcode</h3>
+        <input
+          type='text'
+          placeholder={props.userInfo.postcode}
+          onChange={(e) => setPostcode(e.target.value)}
+          className='postcode'
+        />
+        <br></br>
+        <input type='submit' class='submit-button' />
       </form>
     </ProfileContainer>
   );

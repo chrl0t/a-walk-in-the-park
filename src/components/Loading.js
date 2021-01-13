@@ -1,16 +1,16 @@
-import React from 'react';
-import './loading.css'
+import React from "react";
+import "./loading.css";
 
 const Loading = () => {
-    return (
-        <div class="walking">
-            <div class="head"></div>
-            <div class="body"></div>
-            <div class="firstLeg"></div>
-            <div class="secondLeg"></div>
-            <div class="shadow"></div>
-        </div>
-    );
+  return (
+    <div className='walking'>
+      <div className='head'></div>
+      <div className='body'></div>
+      <div className='firstLeg'></div>
+      <div className='secondLeg'></div>
+      <div className='shadow'></div>
+    </div>
+  );
 };
 
 export default Loading;

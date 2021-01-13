@@ -30,7 +30,20 @@ const PostAd = () => {
     });
     setTitle("");
     setBody("");
-    navigate(`/home`);
+    const navToHome = () => {
+      setTimeout(() => {
+        navigate(`/home`);
+      }, 2000);
+    };
+    navToHome();
+    // <Timer
+    //   count={0}
+    //   onIncrease={(count) => {
+    //     if (count === 2) {
+    //       navigate(`/home`);
+    //     }
+    //   }}
+    // />;
   };
 
   return (
