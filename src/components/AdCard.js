@@ -48,6 +48,8 @@ const AdCard = (props) => {
     if (profilePostcode && userPostcode) {
       let pp = await getGeolocation(profilePostcode);
       let up = await getGeolocation(userPostcode);
+      console.log(pp, '------------ pp');
+      console.log(up, '--------------- up');
 
       return calculateDistance(
         pp.latitude,

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 
 .html,
 body {
@@ -7,8 +8,8 @@ body {
   margin-bottom: 15%;
   padding: 0;
   text-align: center;
-  background-color: white;
-  font-family: "Catamaran", sans-serif;
+  background-color: #fcf6f5ff;
+  font-family: "Open Sans", sans-serif;
 }
 
 .user-picture img {
@@ -24,7 +25,7 @@ body {
   width: 28%;
 }
 .current-user-container > div {
-  background-color: #ffffff;
+  background-color: #fcf6f5ff;
   display: flex;
   flex-direction: column;
   justify-content: center;
