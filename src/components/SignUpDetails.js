@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { LoginContainer } from '../styles';
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 
 const SignUpDetails = (props) => {
     const [password, setPassword] = useState()
@@ -10,6 +10,7 @@ const SignUpDetails = (props) => {
     const [takenUsernames, setTakenUsernames] = useState([])
     const [usernameClass, setUsernameClass] = useState("hide")
     const [passwordClass, setPasswordClass] = useState("hide")
+    const [imageAsFile, setImageAsFile] = useState(null)
 
     useEffect(() => {
         async function fetchData() {
@@ -32,6 +33,9 @@ const SignUpDetails = (props) => {
 
         if (password === passwordConfirm && emailClass !== "show" && usernameClass !== "show" && passwordClass !== "show") {
             props.setPassword(password)
+
+            // console.log(imageAsFile, "<<<<< ")
+            // const uploadTask = storage.ref(`${props.username}.jpg`).put(imageAsFile, {type: 'image/jpeg'})
             props.setNextPage(true)
         } else {
             alert("Please check you have filled the form correctly")
@@ -72,6 +76,13 @@ const SignUpDetails = (props) => {
             setPasswordClass("show")
         }
     }
+
+    // const handleImageAsFile = (e) => {
+    //     if (e.target.files[0]) {
+    //         const image = e.target.files[0]
+    //         setImageAsFile(image)
+    //     }
+    // }
     return (
         <LoginContainer>
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -88,6 +99,7 @@ const SignUpDetails = (props) => {
                 <p>Confirm Password: </p>
                 <input type="text" required id="password-confirm" onChange={(e) => setPasswordConfirm(e.target.value)} onBlur={() => handlePasswordMismatch()}/>
                 <p class={passwordErrorClass}>Passwords do not match</p>
+                {/* <input type="file" onChange={(e)=> handleImageAsFile(e)} accept="image/jpeg"/> */}
                 <button type="submit">Next Page</button>
             </form>
         </LoginContainer>

@@ -86,7 +86,7 @@ const InputUserDetails = (props) => {
     if (!nextPage) {
         return (
             <>
-            <SignUpDetails setUsername={setUsername} setEmail={setEmail} setPassword={setPassword}  setNextPage={setNextPage}/>
+            <SignUpDetails username={username} setUsername={setUsername} setEmail={setEmail} setPassword={setPassword}  setNextPage={setNextPage}/>
             <p>Already have an account? Login <Link to="/login">here!</Link></p>
             </>
         )
