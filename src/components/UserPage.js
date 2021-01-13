@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from "../Authentication";
 import {db, storage} from '../firebase'
-import { ProfilePicture, ProfileContainer } from '../styles'
+import { ProfilePicture, ProfileContainer, ProfileHeaderContainer, MyAdsContainer } from '../styles'
 import Map from './Map/Map';
 import { formatDOB, calculateAge } from '../utils/calculateAge'
 import Loading from './Loading';
@@ -94,19 +94,33 @@ const UserPage = (props) => {
   } else {
     return (
       <ProfileContainer>
-        <h2>{userProfile.username}</h2>
-        <ProfilePicture src={image} width='100px'></ProfilePicture>
-        <div className='info'>
-          <div className='fields'>📍{userDistrict}</div>
-          <div className='fields'>{userProfile.name}</div>
-          <div className='fields'>Age: {age}</div>
-          <div className='fields-gender'>Gender: {userProfile.gender}</div>
-          <div className='fields'>{userProfile.bio}</div>
-          <Map centerLatitude={center.latitude} centerLongitude={center.longitude}/>
-        </div>
+        <ProfileHeaderContainer>
+            <div class="top">
+              <ProfilePicture src={image} width='100px'></ProfilePicture>
+              <h2>{userProfile.username}</h2>
+            </div>
+
+            <div class="profile">
+              <p>{userProfile.name}</p>
+              <p>{age}</p>
+              <p>📍 {userDistrict}</p>
+              <p>{userProfile.gender[0].toUpperCase() + userProfile.gender.slice(1)}</p>
+            </div>
+
+            <div class='info'>
+            <p>{userProfile.bio}</p>
+          </div>
 
 
-        <p>{user}'s ads</p>
+        </ProfileHeaderContainer>
+
+        <p id="title">Parks Between You</p>
+        <Map centerLatitude={center.latitude} centerLongitude={center.longitude}/>
+      
+
+        <MyAdsContainer>
+          
+        <p id="title">{user}'s Ads</p>
           <ul>
             {ads.map(ad => {
               return (
@@ -114,6 +128,9 @@ const UserPage = (props) => {
               )
             })}
           </ul>
+        </MyAdsContainer>
+
+       
       </ProfileContainer>
     );
   }

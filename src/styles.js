@@ -6,7 +6,7 @@ export const HeaderStyled = styled.div`
   width: 100%;
   height: 4.5rem;
   margin: auto;
-  padding-top: 0.5rem;
+  /* padding-top: 0.5rem; */
   text-align: center;
   text-decoration: none;
   font-size: 2.8rem;
@@ -325,9 +325,17 @@ export const AdCardStyled = styled.li`
 export const ProfileContainer = styled.div`
   text-align: center;
   font-size: 25px;
-  padding: 0.5rem;
   padding-top: 0rem;
   height: auto;
+
+  #title{
+    width: 80%;
+    color: #2bae66ff;
+    margin: 30px auto;
+    text-align: left;
+
+  }
+  
 
   .logout-button {
     color: white;
@@ -347,14 +355,11 @@ export const ProfileContainer = styled.div`
     align-items: center;
   }
 
-  img {
-    padding-top: 0rem;
-    margin-top: 0rem;
-  }
-
   h2 {
+    font-size: 1.2rem;
     color: #2bae66ff;
     margin-bottom: 0.5rem;
+    margin-left: 30px;
   }
 
   h3 {
@@ -365,17 +370,13 @@ export const ProfileContainer = styled.div`
   .info {
     font-size: 1.2rem;
     font-family: Helvetica, sans-serif;
+    text-align: left;
+    border-bottom: 1px solid grey;
+    width: 90%;
+    margin: 0 auto;
   }
 
-  .fields-gender {
-    margin: 1rem;
-    text-transform: capitalize;
-  }
-
-  .fields {
-    margin: 1rem;
-  }
-
+ 
   .submit-button {
     color: white;
     text-transform: uppercase;
@@ -390,21 +391,6 @@ export const ProfileContainer = styled.div`
     text-align: center;
   }
 
-  textarea {
-    width: 18rem;
-    height: 6rem;
-    font-family: "Open Sans", sans-serif;
-    border-radius: 0.4rem;
-    border-width: 0.2rem;
-    border-color: #2bae66ff;
-  }
-
-  input {
-    font-family: "Open Sans", sans-serif;
-    border-radius: 0.4rem;
-    border-width: 0.2rem;
-    border-color: #2bae66ff;
-  }
 
   .postcode {
     padding: 0;
@@ -418,8 +404,140 @@ export const ProfileContainer = styled.div`
 `;
 export const ProfilePicture = styled.img`
   border-radius: 50%;
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
+  
+
 `;
 
+export const ProfileHeaderContainer = styled.div`
+  margin: 0 auto; 
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  
+ 
+  header {
+    position: relative;
+    height: 80px;
+    background-image: linear-gradient(#2bae66ff, #2bae66ff);
+    display: flex;
+  }
+  #signout {
+    border: none;
+    background-color: #2bae66ff;
+    font-size: 25px;
+    color: white;
+  }
+  p {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .show {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #2bae66ff;
+    font-size: 20px;
+    color: white;
+    justify-content: space-evenly;
+  }
+
+  .hide{
+    visibility: hidden;
+    font-size: 0px;
+  }
+  .profile {
+    display: flex;
+    font-size: 16px;
+    width: 90%;
+    margin: 0 auto;
+    justify-content:space-between;
+  }
+
+  .top {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    
+  }
+`
+export const MyAdsContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+
+
+  
+
+`
+
+export const EditProfileContainer = styled.div`
+  text-align: center;
+  font-size: 25px;
+  padding-top: 0rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+  form {
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 150px;
+  }
+  .submit-button {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2bae66ff;
+    font-family: "Catamaran", sans-serif;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    width: 100%;
+    height: 2rem;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 35px;;
+    color: #2bae66ff;
+    margin-bottom: 0.5rem;
+    margin-left: 30px;
+  }
+
+  h3 {
+    
+    color: #2bae66ff;
+    margin-bottom: 0.8rem;
+  }
+
+  textarea {
+    height: 6rem;
+    font-family: "Open Sans", sans-serif;
+    border: none;
+    border-bottom: 1px solid #2bae66ff;
+    width: 100%;
+  }
+
+  input {
+    font-family: "Open Sans", sans-serif;
+    border: none;
+    border-bottom: 1px solid #2bae66ff;
+    width:100%;
+    
+  }
+
+`
 // LOGIN STYLES
 
 export const LoginContainer = styled.div`
