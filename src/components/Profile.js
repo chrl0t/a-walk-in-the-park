@@ -7,6 +7,7 @@ import { ProfilePicture, ProfileContainer } from "../styles";
 import { formatDOB, calculateAge } from "../utils/calculateAge";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication";
+import ProfileAdCards from './ProfileAdCards'
 
 import { db } from "../firebase";
 
@@ -28,17 +29,19 @@ const Profile = (props) => {
     const age = calculateAge(dob);
 
     async function fetchData() {
+      console.log(currentUser.username)
       const adsRef = db.collection("ads").where("username", "==", currentUser.username)
-      const snapshot = await adsRef.orderBy("created at", "desc").get();
+      const snapshot = await adsRef.get();
       const fetchedAds = [];
       snapshot.forEach((doc) => {
         const ad = doc.data();
         fetchedAds.push(ad);
       });
+      console.log(fetchedAds)
       setAds(fetchedAds);
     }
     fetchData();
-    console.log(ads)
+    console.log(ads, "<<<<<")
     setAge(age);
   }, []);
 
@@ -111,6 +114,16 @@ const Profile = (props) => {
             <div className='fields-gender'>Gender: {profile.gender}</div>
             <div className='fields'>Bio: {bio}</div>
           </div>
+
+          <p>My ads</p>
+          <ul>
+            {ads.map(ad => {
+              return (
+                <ProfileAdCards ad={ad}/>
+              )
+            })}
+          </ul>
+
         </ProfileContainer>
       </div>
     );
