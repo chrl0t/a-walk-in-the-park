@@ -3,7 +3,7 @@ import profilepic from "../images/download.jpeg";
 import editLogo from "../images/edit.png";
 import Loading from "./Loading";
 import EditProfile from "./EditProfile";
-import { ProfilePicture, ProfileContainer } from "../styles";
+import { ProfilePicture, ProfileContainer, ProfileHeaderContainer, MyAdsContainer  } from "../styles";
 import { formatDOB, calculateAge } from "../utils/calculateAge";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication";
@@ -29,6 +29,7 @@ const Profile = (props) => {
   const [ads, setAds] = useState([])
   const [err, setErr] = useState()
   const [image, setImage] = useState()
+  const [showOptions, setShowOptions] = useState("hide")
 
   useEffect(() => {
     const dob = formatDOB(currentUser.dob);
@@ -93,6 +94,11 @@ const Profile = (props) => {
     }
   });
 
+  const handleOptionClick = (e) => {
+    if (showOptions === "show") setShowOptions("hide")
+    if (showOptions === "hide") setShowOptions("show")
+  }
+
   async function getGeolocation(postcode) {
     const result = await postcodes.lookup(postcode).then((res) => {
       return res.result;
@@ -115,7 +121,7 @@ const Profile = (props) => {
         handleEdit={handleEdit}
         userInfo={profile}
         bio={bio}
-        profilePicture={profilepic}
+        profilePicture={image}
         updateBio={updateBio}
       />
     );
@@ -123,39 +129,49 @@ const Profile = (props) => {
     return (
       <div>
         <ProfileContainer>
-          <button className='logout-button' onClick={handleLogout}>
-            Sign out
-          </button>
-          <h2>{profile.username}</h2>
-          <ProfilePicture
-            src={image}
-            width='100px'
-            height='100px'
-          ></ProfilePicture>
-          <img
-            src={editLogo}
-            alt='edit'
-            width='20px'
-            height='20px'
-            onClick={(e) => handleEdit(e)}
-            id='show'
-          ></img>
-          <div className='info'>
-            <div className='fields'>{profileDistrict}</div>
-            <div className='fields'>{profile.name}</div>
-            <div className='fields'>{age}</div>
-            <div className='fields-gender'>{profile.gender}</div>
-            <div className='fields'>{bio}</div>
+          <ProfileHeaderContainer>
+
+            <header>
+              <button id="signout" onClick={(e) => handleOptionClick(e)}>☰</button>
+              <div class={showOptions}>
+                  <p onClick={handleLogout}>Logout</p>
+                  <p onClick={(e) => handleEdit(e)}
+                id='show'>Edit Profile</p>
+              </div>
+            </header>
+
+          <div class="top">
+            <ProfilePicture
+              src={image}
+              id="img"
+              width='100px'
+              height='100px'
+            ></ProfilePicture>
+            <h2>{profile.username}</h2>
+          </div>
+     
+          <div class="profile">
+            <p>{profile.name}</p>
+            <p>{age}</p>
+            <p>📍 {profileDistrict}</p>
+            <p>{profile.gender[0].toUpperCase() + profile.gender.slice(1)}</p>
           </div>
 
-          <p>My ads</p>
-          <ul>
-            {ads.map(ad => {
-              return (
-                <ProfileAdCards ad={ad}/>
-              )
-            })}
-          </ul>
+          <div class='info'>
+            <p>{bio}</p>
+          </div>
+      
+        </ProfileHeaderContainer>
+
+        <MyAdsContainer>
+            <ul>
+              {ads.map(ad => {
+                return (
+                  <ProfileAdCards ad={ad}/>
+                )
+              })}
+            </ul>
+        </MyAdsContainer>
 
         </ProfileContainer>
       </div>

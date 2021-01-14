@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProfileContainer, ProfilePicture } from "../styles";
+import { EditProfileContainer, ProfilePicture } from "../styles";
 import { db } from "../firebase";
 
 const EditProfile = (props) => {
@@ -19,16 +19,18 @@ const EditProfile = (props) => {
     props.handleEdit(false);
   };
   return (
-    <ProfileContainer>
-      <h2>Edit Profile</h2>
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <EditProfileContainer>
+      <div class="top">
+      
         <ProfilePicture
-          src={props.profilePicture}
-          width='100px'
-          height='100px'
-        ></ProfilePicture>
-        {/* <p>Username: </p> <input type="text" value={username} placeholder={props.userInfo.username} onChange={(e) => setUsername(e.target.value)}/> */}
-        {/* <p>Password: </p> <input type="text" value={password} placeholder="*****" onChange={(e) => setPassword(e.target.value)}/><br/> */}
+            src={props.profilePicture}
+            width='100px'
+            height='100px'
+          ></ProfilePicture>
+            <h2>Edit Profile</h2>
+      </div>
+    
+      <form onSubmit={(e) => handleSubmit(e)}>
         <h3>Update Bio: </h3>{" "}
         <textarea
           type='text'
@@ -47,7 +49,7 @@ const EditProfile = (props) => {
         <br></br>
         <input type='submit' class='submit-button' />
       </form>
-    </ProfileContainer>
+    </EditProfileContainer>
   );
 };
 
