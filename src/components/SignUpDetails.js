@@ -94,12 +94,12 @@ const SignUpDetails = (props) => {
                 <input type="text" required id="email" onChange={(e) => props.setEmail(e.target.value)} onBlur={(e) => validateEmail(e.target.value)}/>
                 <p class={emailClass}>Please enter a valid email</p>
                 <p>Password: </p>
-                <input type="text" required id="password" onChange={(e) => setPassword(e.target.value)} onBlur={(e) => validatePassword(e.target.value)}/>
+                <input type="password" required id="password" onChange={(e) => setPassword(e.target.value)} onBlur={(e) => validatePassword(e.target.value)}/>
                 <p class={passwordClass}>Password must be at least 6 characters and have at least one number and one special character</p>
                 <p>Confirm Password: </p>
-                <input type="text" required id="password-confirm" onChange={(e) => setPasswordConfirm(e.target.value)} onBlur={() => handlePasswordMismatch()}/>
+                <input type="password" required id="password-confirm" onChange={(e) => setPasswordConfirm(e.target.value)} onBlur={() => handlePasswordMismatch()}/>
                 <p class={passwordErrorClass}>Passwords do not match</p>
-                {/* <input type="file" onChange={(e)=> handleImageAsFile(e)} accept="image/jpeg"/> */}
+                <input type="file" accept="image/jpeg"/>
                 <button type="submit">Next Page</button>
             </form>
         </LoginContainer>

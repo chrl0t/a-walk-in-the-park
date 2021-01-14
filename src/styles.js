@@ -476,6 +476,27 @@ export const ProfileHeaderContainer = styled.div`
     justify-content: space-evenly;
   }
 
+  .message {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2bae66ff;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    width: 300px;
+    height: 2.5rem;
+    margin: auto;
+    text-align: center;
+  }
+
+  .line {
+    border-bottom: 1px solid grey;
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
   .hide {
     visibility: hidden;
     font-size: 0px;

@@ -6,7 +6,8 @@ import Map from './Map/Map';
 import { formatDOB, calculateAge } from '../utils/calculateAge'
 import Loading from './Loading';
 import * as geolib from 'geolib';
-import ProfileAdCards from './ProfileAdCards'
+import ProfileAdCards from './ProfileAdCards';
+import { Link } from "@reach/router";
 const postcodes = require("node-postcodes.io");
 
 
@@ -104,11 +105,19 @@ const UserPage = (props) => {
               <p>{age}</p>
               <p>📍 {userDistrict}</p>
               <p>{userProfile.gender[0].toUpperCase() + userProfile.gender.slice(1)}</p>
+              
             </div>
 
             <div class='info'>
             <p>{userProfile.bio}</p>
           </div>
+          <div className='line'>
+          <Link to={`/inbox/${userProfile.username}`}>
+            {" "}
+            <button className='message'>Message</button>
+          </Link>
+          </div>
+          
 
 
         </ProfileHeaderContainer>
