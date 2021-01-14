@@ -5,7 +5,6 @@ import { ProfilePicture, ProfileContainer, ProfileHeaderContainer, MyAdsContaine
 import Map from './Map/Map';
 import { formatDOB, calculateAge } from '../utils/calculateAge'
 import Loading from './Loading';
-import avatar from "../images/avatar.png";
 import * as geolib from 'geolib';
 import ProfileAdCards from './ProfileAdCards'
 const postcodes = require("node-postcodes.io");

@@ -420,16 +420,16 @@ export const ProfileHeaderContainer = styled.div`
   
  
   header {
-    position: relative;
+    /* position: relative; */
     height: 80px;
-    background-image: linear-gradient(#2bae66ff, #2bae66ff);
+    background-color: #EEEEEE;
     display: flex;
   }
   #signout {
     border: none;
-    background-color: #2bae66ff;
+    background-color: none;
     font-size: 25px;
-    color: white;
+    color: black;
   }
   p {
     padding-left: 5px;
@@ -439,9 +439,9 @@ export const ProfileHeaderContainer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: #2bae66ff;
+    background-color: #EEEEEE;
     font-size: 20px;
-    color: white;
+    color: black;
     justify-content: space-evenly;
   }
 
