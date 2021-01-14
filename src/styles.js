@@ -40,7 +40,7 @@ export const FooterStyled = styled.div`
   .user-button,
   .message-button,
   .map-button {
-    margin-top: 1rem;
+    margin-top: 1.3rem;
   }
 
   .home-button {
@@ -55,16 +55,53 @@ export const FooterStyled = styled.div`
   .user-button {
     height: 3.1rem;
     width: 3.2rem;
+    margin-top: 0.9rem;
   }
 
   .message-button {
-    height: 3.3rem;
+    height: 3.5rem;
     width: 2.7rem;
+    margin-top: 0.8rem;
   }
 
   .map-button {
-    height: 3rem;
+    height: 2.8rem;
     width: 3rem;
+    margin-top: 1.1rem;
+  }
+
+  @media (min-width: 500px) {
+    .home-button,
+    .add-button,
+    .user-button,
+    .message-button,
+    .map-button {
+      margin-top: 1.5rem;
+    }
+
+    .home-button {
+      height: 2.8rem;
+      width: 3rem;
+    }
+
+    .add-button {
+      height: 2.5rem;
+    }
+
+    .user-button {
+      height: 3.1rem;
+      width: 3.2rem;
+    }
+
+    .message-button {
+      height: 3.5rem;
+      width: 2.7rem;
+    }
+
+    .map-button {
+      height: 2.8rem;
+      width: 3rem;
+    }
   }
 `;
 
@@ -218,7 +255,7 @@ export const AdCardStyled = styled.li`
     text-decoration: none;
     color: #2bae66ff;
     font-family: "Open Sans", sans-serif;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .delete-button {

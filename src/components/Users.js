@@ -18,8 +18,7 @@ const Users = () => {
           id: user.username,
           name: user.name,
           role: "member",
-          photoUrl:
-            "https://images.wagwalkingweb.com/media/daily_wag/name_guides/cartoon-dog-names/featured_dog/snoopy.jpg?auto=compress&fit=max"
+          photoUrl: "https://static.thenounproject.com/png/363640-200.png"
         };
       });
       setUsers(mappedUsers);
