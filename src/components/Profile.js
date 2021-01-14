@@ -3,20 +3,21 @@ import profilepic from "../images/download.jpeg";
 import editLogo from "../images/edit.png";
 import Loading from "./Loading";
 import EditProfile from "./EditProfile";
-import { ProfilePicture, ProfileContainer, ProfileHeaderContainer, MyAdsContainer  } from "../styles";
+import {
+  ProfilePicture,
+  ProfileContainer,
+  ProfileHeaderContainer,
+  MyAdsContainer
+} from "../styles";
 import { formatDOB, calculateAge } from "../utils/calculateAge";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication";
-import ProfileAdCards from './ProfileAdCards';
-
-
+import ProfileAdCards from "./ProfileAdCards";
 
 import { db, storage } from "../firebase";
 
 import app from "../firebase";
 const postcodes = require("node-postcodes.io");
-
-
 
 const Profile = (props) => {
   const { currentUser } = useContext(AuthContext);
@@ -24,12 +25,12 @@ const Profile = (props) => {
   const [bio, setBio] = useState(currentUser.bio);
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [profileDistrict, setProfileDistrict] = useState('');
+  const [profileDistrict, setProfileDistrict] = useState("");
   const [age, setAge] = useState(0);
-  const [ads, setAds] = useState([])
-  const [err, setErr] = useState()
-  const [image, setImage] = useState()
-  const [showOptions, setShowOptions] = useState("hide")
+  const [ads, setAds] = useState([]);
+  const [err, setErr] = useState();
+  const [image, setImage] = useState();
+  const [showOptions, setShowOptions] = useState("hide");
 
   useEffect(() => {
     const dob = formatDOB(currentUser.dob);
@@ -37,7 +38,9 @@ const Profile = (props) => {
 
     async function fetchData() {
       // console.log(currentUser.username)
-      const adsRef = db.collection("ads").where("username", "==", currentUser.username)
+      const adsRef = db
+        .collection("ads")
+        .where("username", "==", currentUser.username);
       const snapshot = await adsRef.get();
       const fetchedAds = [];
       snapshot.forEach((doc) => {
@@ -51,14 +54,14 @@ const Profile = (props) => {
       });
     }
     fetchData();
-    
-    const username = profile.username
-    storage  
+
+    const username = profile.username;
+    storage
       .ref(`${username}.jpg`)
       .getDownloadURL()
-      .then(url => {
-        console.log(url)
-        setImage(url)
+      .then((url) => {
+        console.log(url);
+        setImage(url);
       });
 
     setAge(age);
@@ -69,8 +72,7 @@ const Profile = (props) => {
   };
 
   const handleEdit = (bool) => {
-    setEdit(bool)
-
+    setEdit(bool);
   };
 
   const handlePostLogout = () => {
@@ -95,9 +97,9 @@ const Profile = (props) => {
   });
 
   const handleOptionClick = (e) => {
-    if (showOptions === "show") setShowOptions("hide")
-    if (showOptions === "hide") setShowOptions("show")
-  }
+    if (showOptions === "show") setShowOptions("hide");
+    if (showOptions === "hide") setShowOptions("show");
+  };
 
   async function getGeolocation(postcode) {
     const result = await postcodes.lookup(postcode).then((res) => {
@@ -130,49 +132,47 @@ const Profile = (props) => {
       <div>
         <ProfileContainer>
           <ProfileHeaderContainer>
-
             <header>
-              <button id="signout" onClick={(e) => handleOptionClick(e)}>☰</button>
+              <button id='signout' onClick={(e) => handleOptionClick(e)}>
+                ☰
+              </button>
               <div class={showOptions}>
-                  <p onClick={handleLogout}>Logout</p>
-                  <p onClick={(e) => handleEdit(e)}
-                id='show'>Edit Profile</p>
+                <p onClick={handleLogout}>Logout</p>
+                <p onClick={(e) => handleEdit(e)} id='show'>
+                  Edit Profile
+                </p>
               </div>
             </header>
 
-          <div class="top">
-            <ProfilePicture
-              src={image}
-              id="img"
-              width='100px'
-              height='100px'
-            ></ProfilePicture>
-            <h2>{profile.username}</h2>
-          </div>
-     
-          <div class="profile">
-            <p>{profile.name}</p>
-            <p>{age}</p>
-            <p>📍 {profileDistrict}</p>
-            <p>{profile.gender[0].toUpperCase() + profile.gender.slice(1)}</p>
-          </div>
+            <div class='top'>
+              <ProfilePicture
+                src={image}
+                id='img'
+                width='100px'
+                height='100px'
+              ></ProfilePicture>
+              <h2>{profile.username}</h2>
+            </div>
 
-          <div class='info'>
-            <p>{bio}</p>
-          </div>
-      
-        </ProfileHeaderContainer>
+            <div class='profile'>
+              <p>{profile.name}</p>
+              <p>{age}</p>
+              <p>{profileDistrict}</p>
+              <p>{profile.gender[0].toUpperCase() + profile.gender.slice(1)}</p>
+            </div>
 
-        <MyAdsContainer>
+            <div class='info'>
+              <p>{bio}</p>
+            </div>
+          </ProfileHeaderContainer>
+
+          <MyAdsContainer>
             <ul>
-              {ads.map(ad => {
-                return (
-                  <ProfileAdCards ad={ad}/>
-                )
+              {ads.map((ad) => {
+                return <ProfileAdCards ad={ad} />;
               })}
             </ul>
-        </MyAdsContainer>
-
+          </MyAdsContainer>
         </ProfileContainer>
       </div>
     );

@@ -41,15 +41,18 @@ class Messages extends Component {
 
   render() {
     return (
-      <Fragment>
-        <div
-          style={{ height: "500px" }}
-          className='inbox-container'
-          ref={(c) => (this.container = c)}
-        >
-          Loading...
-        </div>
-      </Fragment>
+      <div>
+        <h2>Inbox</h2>
+        <Fragment>
+          <div
+            style={{ height: "500px" }}
+            className='inbox-container'
+            ref={(c) => (this.container = c)}
+          >
+            Loading...
+          </div>
+        </Fragment>
+      </div>
     );
   }
 }

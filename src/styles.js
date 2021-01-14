@@ -6,7 +6,7 @@ export const HeaderStyled = styled.div`
   width: 100%;
   height: 4.5rem;
   margin: auto;
-  /* padding-top: 0.5rem; */
+  padding-top: 0.8rem;
   text-align: center;
   text-decoration: none;
   font-size: 2.8rem;
@@ -40,7 +40,7 @@ export const FooterStyled = styled.div`
   .user-button,
   .message-button,
   .map-button {
-    margin-top: 1.3rem;
+    margin-top: 1rem;
   }
 
   .home-button {
@@ -55,19 +55,19 @@ export const FooterStyled = styled.div`
   .user-button {
     height: 3.1rem;
     width: 3.2rem;
-    margin-top: 0.9rem;
+    margin-top: 0.6rem;
   }
 
   .message-button {
     height: 3.5rem;
     width: 2.7rem;
-    margin-top: 0.8rem;
+    margin-top: 0.5rem;
   }
 
   .map-button {
     height: 2.8rem;
     width: 3rem;
-    margin-top: 1.1rem;
+    margin-top: 0.8rem;
   }
 
   @media (min-width: 500px) {
@@ -180,13 +180,7 @@ export const LandingPageStyled = styled.div`
 
   p {
     font-family: "Open Sans", sans-serif;
-<<<<<<< HEAD
-    color: #2Bae66ff;
-    margin: auto;
-    padding: 10% ;
-=======
     color: #2bae66ff;
->>>>>>> 15e33a49cb4d9652b95f5c3c8ff96ac1d755de53
   }
 
   button {
@@ -197,7 +191,7 @@ export const LandingPageStyled = styled.div`
     font-family: "Catamaran", sans-serif;
     font-weight: bold;
     border-radius: 0.4rem;
-    width: auto;
+    width: 8rem;
     height: auto;
     padding: 0.2rem 0.5rem;
     margin: 0.5em;
@@ -372,14 +366,12 @@ export const ProfileContainer = styled.div`
   padding-top: 0rem;
   height: auto;
 
-  #title{
+  #title {
     width: 80%;
     color: #2bae66ff;
     margin: 30px auto;
     text-align: left;
-
   }
-  
 
   .logout-button {
     color: white;
@@ -420,7 +412,6 @@ export const ProfileContainer = styled.div`
     margin: 0 auto;
   }
 
- 
   .submit-button {
     color: white;
     text-transform: uppercase;
@@ -434,7 +425,6 @@ export const ProfileContainer = styled.div`
     margin: 0.5em;
     text-align: center;
   }
-
 
   .postcode {
     padding: 0;
@@ -451,22 +441,19 @@ export const ProfilePicture = styled.img`
   float: left;
   margin-left: 20px;
   margin-top: 5px;
-  
-
 `;
 
 export const ProfileHeaderContainer = styled.div`
-  margin: 0 auto; 
+  margin: 0 auto;
   padding: 0;
   display: flex;
   flex-direction: column;
   height: auto;
-  
- 
+
   header {
     /* position: relative; */
     height: 80px;
-    background-color: #EEEEEE;
+    background-color: #eeeeee;
     display: flex;
   }
   #signout {
@@ -483,13 +470,13 @@ export const ProfileHeaderContainer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    background-color: #EEEEEE;
+    background-color: #eeeeee;
     font-size: 20px;
     color: black;
     justify-content: space-evenly;
   }
 
-  .hide{
+  .hide {
     visibility: hidden;
     font-size: 0px;
   }
@@ -498,7 +485,7 @@ export const ProfileHeaderContainer = styled.div`
     font-size: 16px;
     width: 90%;
     margin: 0 auto;
-    justify-content:space-between;
+    justify-content: space-between;
   }
 
   .top {
@@ -506,17 +493,13 @@ export const ProfileHeaderContainer = styled.div`
     margin: 0 auto;
     display: flex;
     align-items: center;
-    
   }
-`
+`;
 export const MyAdsContainer = styled.div`
   width: 100%;
   margin: 0 auto;
-
-
-  
-
-`
+  margin-bottom: 8rem;
+`;
 
 export const EditProfileContainer = styled.div`
   text-align: center;
@@ -553,14 +536,13 @@ export const EditProfileContainer = styled.div`
   }
 
   h2 {
-    font-size: 35px;;
+    font-size: 35px;
     color: #2bae66ff;
     margin-bottom: 0.5rem;
     margin-left: 30px;
   }
 
   h3 {
-    
     color: #2bae66ff;
     margin-bottom: 0.8rem;
   }
@@ -577,11 +559,9 @@ export const EditProfileContainer = styled.div`
     font-family: "Open Sans", sans-serif;
     border: none;
     border-bottom: 1px solid #2bae66ff;
-    width:100%;
-    
+    width: 100%;
   }
-
-`
+`;
 // LOGIN STYLES
 
 export const LoginContainer = styled.div`

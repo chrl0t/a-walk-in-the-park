@@ -104,7 +104,6 @@ const AdCard = (props) => {
             {" "}
             <button className='emoji'>✉️</button>
           </Link>
-          <button className='emoji'>❤️</button>
           {ad.username !== profile.username ? (
             distance > 1 ? (
               <button className='distance'>{distance} miles away</button>
