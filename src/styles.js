@@ -180,7 +180,13 @@ export const LandingPageStyled = styled.div`
 
   p {
     font-family: "Open Sans", sans-serif;
+<<<<<<< HEAD
+    color: #2Bae66ff;
+    margin: auto;
+    padding: 10% ;
+=======
     color: #2bae66ff;
+>>>>>>> 15e33a49cb4d9652b95f5c3c8ff96ac1d755de53
   }
 
   button {
@@ -191,8 +197,9 @@ export const LandingPageStyled = styled.div`
     font-family: "Catamaran", sans-serif;
     font-weight: bold;
     border-radius: 0.4rem;
-    width: 20rem;
-    height: 2rem;
+    width: auto;
+    height: auto;
+    padding: 0.2rem 0.5rem;
     margin: 0.5em;
     text-align: center;
   }
