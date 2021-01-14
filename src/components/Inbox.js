@@ -18,8 +18,7 @@ class Inbox extends React.Component {
       id: user.id,
       name: user.name,
       role: "Member",
-      photoUrl:
-        "https://static.wikia.nocookie.net/roalddahl/images/b/b9/Illmannered.jpg/revision/latest/top-crop/width/360/height/450?cb=20140911174536"
+      photoUrl: "https://static.thenounproject.com/png/363640-200.png"
     };
     fetchUsers().then((res) => {
       const user = res.find((user) => user.id === this.props.username);

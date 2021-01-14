@@ -33,8 +33,7 @@ class Messages extends Component {
       id: user.id,
       name: user.name,
       role: "Member",
-      photoUrl:
-        "https://www.pinclipart.com/picdir/middle/8-82428_profile-clipart-generic-user-gender-neutral-head-icon.png"
+      photoUrl: "https://static.thenounproject.com/png/363640-200.png"
     };
 
     this.setState(userInfo);
