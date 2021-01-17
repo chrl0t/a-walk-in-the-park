@@ -115,6 +115,14 @@ const Profile = (props) => {
     }
   }
 
+  const handleDelete = (adToDelete) => {
+    const filteredAds = ads.filter((ad) => {
+      return ad.title !== adToDelete;
+    });
+
+    setAds(filteredAds);
+  };
+
   if (loading) {
     return <Loading />;
   } else if (edit) {
@@ -169,7 +177,7 @@ const Profile = (props) => {
           <MyAdsContainer>
             <ul>
               {ads.map((ad) => {
-                return <ProfileAdCards ad={ad} />;
+                return <ProfileAdCards ad={ad} handleDelete={handleDelete} />;
               })}
             </ul>
           </MyAdsContainer>
