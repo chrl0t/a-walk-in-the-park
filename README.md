@@ -10,11 +10,11 @@ For our final project as part of the Northcoders bootcamp, me and 2 other studen
 
 To build the app we used a number of technologies, some old and some familiar. These included:
 
-React
-Firebase / Firestore Database
-CSS
-Google Maps & Places APIs
-Talk JS
+- React
+- Firebase / Firestore Database
+- CSS
+- Google Maps & Places APIs
+- Talk JS
 
 
 ## Contributors
