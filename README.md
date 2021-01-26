@@ -2,6 +2,8 @@
 
 An app designed to allow you to meet people wanting to go on walks!
 
+Watch the demo vid here: https://www.youtube.com/watch?v=3aYc57VlJzQ&ab_channel=Northcoders
+
 ## About
 
 For our final project as part of the Northcoders bootcamp, me and 2 other students created this app. It was inspired by covid pandemic and allows users to post ads about teh type of walk and person they're looking for. For example, if they have kids, dogs, or just fancy a friendly chat with someone.
