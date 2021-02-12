@@ -21,6 +21,6 @@ To build the app we used a number of technologies, some old and some familiar. T
 
 ## Contributors
 
-- [Charlotte I'Anson] (https://github.com/chrl0t)
-- [Leah Woodhead] (https://github.com/leahjwoodhead)
-- [Sam West] (https://github.com/samwesttech)
+- Charlotte I'Anson (https://github.com/chrl0t)
+- Leah Woodhead (https://github.com/leahjwoodhead)
+- Sam West (https://github.com/samwesttech)
